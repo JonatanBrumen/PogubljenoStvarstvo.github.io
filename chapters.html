@@ -12,6 +12,7 @@
       --muted:#c9c2b5;
       --gold:#e8d7a7;
       --violet:#8d6bff;
+      --cyan:#77e7ff;
       --card:rgba(255,255,255,.05);
       --border:rgba(232,215,167,.25);
     }
@@ -22,35 +23,51 @@
       color:var(--text);
       background:
         radial-gradient(circle at 20% 20%, rgba(141,107,255,.15), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(119,231,255,.10), transparent 32%),
         linear-gradient(135deg,var(--bg),var(--bg2));
-      line-height:1.7;
+      line-height:1.75;
+      min-height:100vh;
     }
-    .wrap{max-width:1000px;margin:auto;padding:1rem}
+    .wrap{max-width:1100px;margin:auto;padding:1rem}
     nav{
-      display:flex;justify-content:space-between;align-items:center;
-      gap:1rem;padding:1rem 0;
-      border-bottom:1px solid rgba(255,255,255,.1);
+      display:flex;justify-content:space-between;align-items:center;gap:.8rem;
+      padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.1);
+      position:sticky;top:0;backdrop-filter:blur(7px);background:rgba(10,12,24,.5);z-index:10;
+      flex-wrap:wrap;
     }
-    nav a{color:var(--muted);text-decoration:none;margin-left:1rem}
-    nav a:hover{color:var(--text)}
     .brand{color:var(--gold);font-weight:700}
-    h1{margin:1.2rem 0 .4rem;font-size:2rem}
-    .sub{color:var(--muted);margin-top:0}
+    nav a{color:var(--muted);text-decoration:none;margin-left:.9rem}
+    nav a:hover{color:var(--text)}
+    .top-controls{display:flex;gap:.5rem;flex-wrap:wrap}
+    .mini-btn{
+      border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06);
+      color:#fff; border-radius:10px; padding:.45rem .7rem; cursor:pointer;
+      font-size:.88rem;
+    }
+
+    h1{margin:1.2rem 0 .35rem;font-size:clamp(1.6rem,4.2vw,2.2rem)}
+    .sub{color:var(--muted);margin:.1rem 0 1rem}
 
     .layout{
-      display:grid;grid-template-columns:260px 1fr;gap:1rem;margin-top:1rem;
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:1rem;
+      margin-top:.8rem;
     }
-    @media (max-width: 860px){ .layout{grid-template-columns:1fr;} }
+    @media (max-width: 920px){ .layout{grid-template-columns:1fr;} }
 
     .panel{
       background:var(--card);
       border:1px solid var(--border);
       border-radius:14px;
       padding:.8rem;
+      height:max-content;
     }
 
     .chapter-btn{
-      width:100%; text-align:left; cursor:pointer;
+      width:100%;
+      text-align:left;
+      cursor:pointer;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.03);
       color:var(--text);
@@ -62,7 +79,7 @@
     .chapter-btn:hover{border-color:rgba(232,215,167,.45)}
     .chapter-btn.active{
       border-color:var(--gold);
-      background:rgba(232,215,167,.08);
+      background:rgba(232,215,167,.09);
     }
 
     .reader{
@@ -70,91 +87,162 @@
       border:1px solid var(--border);
       border-radius:14px;
       padding:1rem;
-      min-height:420px;
+      min-height:440px;
     }
     .reader h2{margin-top:0;color:var(--gold)}
     .reader p{color:#f0ebde}
+    .reader hr{
+      border:none;height:1px;background:rgba(232,215,167,.2);margin:1rem 0;
+    }
 
     .controls{
-      display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem;
+      display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem;
     }
     .btn{
       border:none;cursor:pointer;border-radius:10px;
-      padding:.6rem .9rem;font-weight:700;
+      padding:.62rem .95rem;font-weight:700;
     }
-    .btn-home{background:#2e3650;color:#fff;text-decoration:none;display:inline-block}
-    .btn-audio{background:linear-gradient(90deg,var(--violet),#62b2ff);color:#fff}
-    .note{color:var(--muted);font-size:.9rem}
+    .btn-home{
+      background:#2e3650;color:#fff;text-decoration:none;display:inline-block
+    }
+    .btn-audio{
+      background:linear-gradient(90deg,var(--violet),#62b2ff,var(--cyan));
+      color:#fff
+    }
+
+    .note{color:var(--muted);font-size:.9rem;margin-top:.6rem}
+    code{
+      background:rgba(255,255,255,.08);
+      padding:.12rem .36rem;
+      border-radius:6px;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <nav>
-      <div class="brand">✧ Your Book Title</div>
-      <div>
-        <a href="./index.html">Home</a>
-        <a href="./chapters.html">Read Online</a>
+      <div class="brand">✧ <span data-i18n="brand">Your Book Title</span></div>
+      <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;">
+        <div>
+          <a href="./index.html" data-i18n="nav_home">Home</a>
+          <a href="./chapters.html" data-i18n="nav_readonline">Read Online</a>
+        </div>
+        <div class="top-controls">
+          <button class="mini-btn" id="langToggle">SL</button>
+          <button class="mini-btn" id="ambientToggle">🎵 Ambient: Off</button>
+        </div>
       </div>
     </nav>
 
     <header>
-      <h1>Read Online</h1>
-      <p class="sub">Choose a chapter on the left. You can also attach chapter music.</p>
+      <h1 data-i18n="page_title">Read Online</h1>
+      <p class="sub" data-i18n="page_sub">Choose a chapter and enter the story world.</p>
     </header>
 
     <section class="layout">
-      <aside class="panel" id="chapterList"></aside>
+      <aside class="panel">
+        <strong data-i18n="chapters_label">Chapters</strong>
+        <div id="chapterList" style="margin-top:.6rem;"></div>
+      </aside>
 
       <article class="reader">
         <h2 id="chapterTitle">Select a chapter</h2>
         <div id="chapterBody">
-          <p>Welcome to your online reader. Click a chapter to begin.</p>
+          <p data-i18n="welcome_text">Welcome to your online reader. Click a chapter to begin.</p>
         </div>
+
+        <hr />
 
         <div class="controls">
           <button class="btn btn-audio" id="playChapterAudio">▶ Play Chapter Music</button>
-          <a class="btn btn-home" href="./index.html">← Back to Main Site</a>
+          <a class="btn btn-home" href="./index.html" data-i18n="back_btn">← Back to Main Site</a>
         </div>
+
         <p class="note" id="audioNote">
-          Tip: Upload music as <code>audio/ch1.mp3</code>, <code>audio/ch2.mp3</code>, etc.
+          Tip: Upload chapter music as <code>audio/ch1.mp3</code>, <code>audio/ch2.mp3</code>, <code>audio/ch3.mp3</code>.
         </p>
       </article>
     </section>
   </div>
 
   <script>
-    // --- EDIT THIS CONTENT WITH YOUR REAL CHAPTERS ---
-    const chapters = [
-      {
-        id: "ch1",
-        title: "Chapter 1 — The Whisper Before Dawn",
-        audio: "audio/ch1.mp3",
-        content: `
+    // ---------- TRANSLATIONS ----------
+    const t = {
+      en: {
+        brand: "Your Book Title",
+        nav_home: "Home",
+        nav_readonline: "Read Online",
+        page_title: "Read Online",
+        page_sub: "Choose a chapter and enter the story world.",
+        chapters_label: "Chapters",
+        welcome_text: "Welcome to your online reader. Click a chapter to begin.",
+        back_btn: "← Back to Main Site",
+        play_music: "▶ Play Chapter Music",
+        stop_music: "⏸ Stop Chapter Music",
+        ambient_on: "🎵 Ambient: On",
+        ambient_off: "🎵 Ambient: Off",
+        audio_tip_prefix: "Music file:",
+        ch1_title: "Chapter 1 — The Whisper Before Dawn",
+        ch1_body: `
           <p>The night was not silent—it was listening.</p>
           <p>He stood beneath a sky torn with stars, and in the stillness he felt a Presence near.</p>
           <p>Not fear. Not thunder. A quiet call toward faith.</p>
-        `
-      },
-      {
-        id: "ch2",
-        title: "Chapter 2 — Through the Narrow Gate",
-        audio: "audio/ch2.mp3",
-        content: `
+        `,
+        ch2_title: "Chapter 2 — Through the Narrow Gate",
+        ch2_body: `
           <p>The path was thin as a promise and bright as mercy.</p>
           <p>Every step required surrender. Every breath required trust.</p>
           <p>He walked forward, not because he understood, but because he believed.</p>
-        `
-      },
-      {
-        id: "ch3",
-        title: "Chapter 3 — Lamps in the Otherworld",
-        audio: "audio/ch3.mp3",
-        content: `
+        `,
+        ch3_title: "Chapter 3 — Lamps in the Otherworld",
+        ch3_body: `
           <p>Across the veil, lights burned in places untouched by sun.</p>
           <p>Each lamp marked a life that had chosen hope over despair.</p>
           <p>He wept, then smiled, and kept walking.</p>
         `
+      },
+      sl: {
+        brand: "Naslov tvoje knjige",
+        nav_home: "Domov",
+        nav_readonline: "Beri spletno",
+        page_title: "Spletno branje",
+        page_sub: "Izberi poglavje in vstopi v svet zgodbe.",
+        chapters_label: "Poglavja",
+        welcome_text: "Dobrodošel v spletnem bralniku. Klikni poglavje za začetek.",
+        back_btn: "← Nazaj na glavno stran",
+        play_music: "▶ Predvajaj glasbo poglavja",
+        stop_music: "⏸ Ustavi glasbo poglavja",
+        ambient_on: "🎵 Ambient: Vklopljeno",
+        ambient_off: "🎵 Ambient: Izklopljeno",
+        audio_tip_prefix: "Glasbena datoteka:",
+        ch1_title: "1. poglavje — Šepet pred zoro",
+        ch1_body: `
+          <p>Noč ni bila tiha — poslušala je.</p>
+          <p>Stal je pod nebom, raztrganim od zvezd, in v miru je začutil bližino Prisotnosti.</p>
+          <p>Ne strah. Ne grom. Le tih klic k veri.</p>
+        `,
+        ch2_title: "2. poglavje — Skozi ozka vrata",
+        ch2_body: `
+          <p>Pot je bila ozka kot obljuba in svetla kot usmiljenje.</p>
+          <p>Vsak korak je zahteval predanost. Vsak vdih je zahteval zaupanje.</p>
+          <p>Hodil je naprej — ne zato, ker bi razumel, ampak ker je veroval.</p>
+        `,
+        ch3_title: "3. poglavje — Svetilke v onstranstvu",
+        ch3_body: `
+          <p>Onkraj tančice so gorele luči v krajih, kamor sonce ne seže.</p>
+          <p>Vsaka svetilka je označevala življenje, ki je izbralo upanje namesto obupa.</p>
+          <p>Zajokal je, se nasmehnil in šel naprej.</p>
+        `
       }
+    };
+
+    let currentLang = "en";
+
+    // ---------- CHAPTER DATA ----------
+    const chapters = [
+      { id: "ch1", audio: "audio/ch1.mp3" },
+      { id: "ch2", audio: "audio/ch2.mp3" },
+      { id: "ch3", audio: "audio/ch3.mp3" }
     ];
 
     const chapterList = document.getElementById("chapterList");
@@ -162,74 +250,127 @@
     const chapterBody = document.getElementById("chapterBody");
     const playBtn = document.getElementById("playChapterAudio");
     const audioNote = document.getElementById("audioNote");
+    const langBtn = document.getElementById("langToggle");
 
     let activeChapter = null;
-    let currentAudio = null;
+    let chapterAudio = null;
 
-    function renderChapterButtons() {
-      chapterList.innerHTML = chapters.map((c, i) => `
-        <button class="chapter-btn ${i === 0 ? "active" : ""}" data-id="${c.id}">
-          ${c.title}
+    // ---------- AMBIENT ----------
+    const ambientBtn = document.getElementById("ambientToggle");
+    const ambientAudio = new Audio("audio/ambient.mp3");
+    ambientAudio.loop = true;
+    ambientAudio.volume = 0.35;
+    let ambientOn = false;
+
+    ambientBtn.addEventListener("click", async () => {
+      if (!ambientOn) {
+        try {
+          await ambientAudio.play();
+          ambientOn = true;
+          ambientBtn.textContent = t[currentLang].ambient_on;
+        } catch (e) {
+          alert(currentLang === "en"
+            ? "Could not play ambient music. Check file: audio/ambient.mp3"
+            : "Glasbe ni bilo mogoče predvajati. Preveri datoteko: audio/ambient.mp3");
+        }
+      } else {
+        ambientAudio.pause();
+        ambientOn = false;
+        ambientBtn.textContent = t[currentLang].ambient_off;
+      }
+    });
+
+    // ---------- LANGUAGE ----------
+    function applyLang(lang){
+      document.documentElement.lang = (lang === "en" ? "en" : "sl");
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[lang][key]) el.innerHTML = t[lang][key];
+      });
+
+      langBtn.textContent = (lang === "en" ? "SL" : "EN");
+      ambientBtn.textContent = ambientOn ? t[lang].ambient_on : t[lang].ambient_off;
+      playBtn.textContent = chapterAudio ? t[lang].stop_music : t[lang].play_music;
+
+      renderChapterButtons();
+      if (activeChapter) {
+        showChapter(activeChapter.id, false);
+      }
+    }
+
+    langBtn.addEventListener("click", () => {
+      currentLang = (currentLang === "en" ? "sl" : "en");
+      applyLang(currentLang);
+    });
+
+    // ---------- CHAPTER RENDER ----------
+    function chapterTitleKey(id){ return `${id}_title`; }
+    function chapterBodyKey(id){ return `${id}_body`; }
+
+    function renderChapterButtons(){
+      chapterList.innerHTML = chapters.map(c => `
+        <button class="chapter-btn ${activeChapter && activeChapter.id === c.id ? "active" : ""}" data-id="${c.id}">
+          ${t[currentLang][chapterTitleKey(c.id)]}
         </button>
       `).join("");
 
       document.querySelectorAll(".chapter-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          document.querySelectorAll(".chapter-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          const chapter = chapters.find(c => c.id === btn.dataset.id);
-          showChapter(chapter);
-        });
+        btn.addEventListener("click", () => showChapter(btn.dataset.id, true));
       });
-
-      // load first chapter by default
-      if (chapters.length) showChapter(chapters[0]);
     }
 
-    function showChapter(chapter) {
-      activeChapter = chapter;
-      chapterTitle.textContent = chapter.title;
-      chapterBody.innerHTML = chapter.content;
-      audioNote.innerHTML = `Music file: <code>${chapter.audio}</code>`;
-      stopAudio();
-      playBtn.textContent = "▶ Play Chapter Music";
+    function showChapter(id, stopMusic = true){
+      const ch = chapters.find(x => x.id === id);
+      if (!ch) return;
+      activeChapter = ch;
+
+      chapterTitle.textContent = t[currentLang][chapterTitleKey(id)];
+      chapterBody.innerHTML = t[currentLang][chapterBodyKey(id)];
+      audioNote.innerHTML = `${t[currentLang].audio_tip_prefix} <code>${ch.audio}</code>`;
+
+      if (stopMusic) stopChapterAudio();
+      playBtn.textContent = chapterAudio ? t[currentLang].stop_music : t[currentLang].play_music;
+
+      renderChapterButtons();
     }
 
-    function stopAudio() {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        currentAudio = null;
+    // ---------- CHAPTER MUSIC ----------
+    function stopChapterAudio(){
+      if (chapterAudio){
+        chapterAudio.pause();
+        chapterAudio.currentTime = 0;
+        chapterAudio = null;
       }
     }
 
     playBtn.addEventListener("click", async () => {
       if (!activeChapter) return;
 
-      // If currently playing, stop
-      if (currentAudio) {
-        stopAudio();
-        playBtn.textContent = "▶ Play Chapter Music";
+      if (chapterAudio){
+        stopChapterAudio();
+        playBtn.textContent = t[currentLang].play_music;
         return;
       }
 
-      try {
-        currentAudio = new Audio(activeChapter.audio);
-        await currentAudio.play();
-        playBtn.textContent = "⏸ Stop Chapter Music";
-
-        currentAudio.onended = () => {
-          currentAudio = null;
-          playBtn.textContent = "▶ Play Chapter Music";
+      try{
+        chapterAudio = new Audio(activeChapter.audio);
+        await chapterAudio.play();
+        playBtn.textContent = t[currentLang].stop_music;
+        chapterAudio.onended = () => {
+          chapterAudio = null;
+          playBtn.textContent = t[currentLang].play_music;
         };
-      } catch (e) {
-        alert("Could not play audio. Check file path: " + activeChapter.audio);
-        currentAudio = null;
-        playBtn.textContent = "▶ Play Chapter Music";
+      } catch(e){
+        alert((currentLang === "en" ? "Could not play chapter music. Check file: " : "Glasbe poglavja ni mogoče predvajati. Preveri datoteko: ") + activeChapter.audio);
+        chapterAudio = null;
+        playBtn.textContent = t[currentLang].play_music;
       }
     });
 
-    renderChapterButtons();
+    // ---------- INIT ----------
+    applyLang("en");
+    showChapter("ch1", false);
   </script>
 </body>
 </html>
