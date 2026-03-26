@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="sl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Book Title | A Story of Faith Beyond Worlds</title>
+  <title>Naslov knjige | Zgodba vere onkraj svetov</title>
   <style>
     :root{
       --black:#0a0a0a;
@@ -13,7 +13,7 @@
       --muted:#cfcfcf;
       --gold:#e8d7a7;
       --border:rgba(232,215,167,.35);
-      --glow:0 0 18px rgba(232,215,167,.45);
+      --glow:0 0 22px rgba(232,215,167,.5);
     }
     *{box-sizing:border-box}
     body{
@@ -48,7 +48,17 @@
       border:1px solid var(--border);color:var(--gold);background:rgba(232,215,167,.08);
       font-size:.82rem;
     }
-    h1{margin:.9rem 0 .6rem;font-size:clamp(2rem,4.8vw,3.4rem)}
+    h1{
+      margin:.9rem 0 .6rem;
+      font-size:clamp(2.1rem,4.8vw,3.6rem);
+      animation: glow 3s ease-in-out infinite;
+      text-shadow:0 0 18px rgba(232,215,167,.4);
+    }
+    @keyframes glow{
+      0%,100%{text-shadow:0 0 12px rgba(232,215,167,.35)}
+      50%{text-shadow:0 0 26px rgba(232,215,167,.8)}
+    }
+
     .sub{max-width:760px;margin:auto;color:var(--muted)}
     .cta{margin-top:1.4rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
     .btn{
@@ -70,89 +80,96 @@
     .card{
       border:1px solid rgba(232,215,167,.2);
       background:rgba(12,12,12,.85);
-      border-radius:14px;padding:.9rem;
+      border-radius:14px;padding:1rem;
       transition:.25s;
+      font-size:1.05rem;
     }
     .card:hover{transform:scale(1.03);box-shadow:var(--glow)}
+
+    .char-btn strong{font-size:1.2rem}
+    .char-btn .muted{font-size:1rem}
 
     .audio-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
     .audio-status{font-size:.9rem;color:var(--gold)}
 
     footer{text-align:center;color:var(--muted);font-size:.92rem;padding:1.4rem 0 2rem}
     code{background:rgba(255,255,255,.08);padding:.12rem .36rem;border-radius:6px}
+
+    /* Scroll to top */
+    #toTop{
+      position:fixed;right:16px;bottom:16px;z-index:99;
+      background:linear-gradient(90deg,#b89f5b,#e8d7a7,#f6eac2);
+      color:#221c0f;border:none;border-radius:999px;
+      padding:.6rem .9rem;font-weight:700;cursor:pointer;
+      box-shadow:var(--glow);display:none;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <nav>
-      <div class="brand">✧ <span data-i18n="brand">Your Book Title</span></div>
+      <div class="brand">✧ <span data-i18n="brand">Naslov tvoje knjige</span></div>
       <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;">
         <div>
-          <a href="#about" data-i18n="nav_about">About</a>
-          <a href="#read" data-i18n="nav_read">Read</a>
-          <a href="#characters" data-i18n="nav_characters">Characters</a>
-          <a href="#buy" data-i18n="nav_buy">Buy</a>
+          <a href="#about" data-i18n="nav_about">O knjigi</a>
+          <a href="#read" data-i18n="nav_read">Branje</a>
+          <a href="#characters" data-i18n="nav_characters">Junaki</a>
+          <a href="#buy" data-i18n="nav_buy">Nakup</a>
         </div>
         <div class="top-controls">
-          <button class="mini-btn" id="ambientToggle">Music: Off</button>
-          <button class="mini-btn" id="langToggle">SL</button>
+          <button class="mini-btn" id="ambientToggle">Glasba: Izklop</button>
+          <button class="mini-btn" id="langToggle">EN</button>
         </div>
       </div>
     </nav>
 
     <header class="hero">
-      <span class="kicker" data-i18n="kicker">Fantasy • Faith • Otherworldly</span>
-      <h1 data-i18n="title">A Journey of Faith Across Worlds</h1>
+      <span class="kicker" data-i18n="kicker">Fantazija • Vera • Onstranstvo</span>
+      <h1 data-i18n="title">Popotovanje vere skozi svetove</h1>
       <p class="sub" data-i18n="subtitle">
-        Enter a story where eternity touches time, where unseen realms are near,
-        and where the light of faith leads through darkness.
+        Vstopi v zgodbo, kjer se večnost dotakne časa, kjer so nevidni svetovi blizu in kjer svetloba vere vodi skozi temo.
       </p>
       <div class="cta">
-        <a class="btn btn-primary" href="#buy" data-i18n="buy_physical">Buy Physical Book</a>
-        <a class="btn btn-dark" href="./chapters.html" data-i18n="read_online">Read Online Version</a>
+        <a class="btn btn-primary" href="#buy" data-i18n="buy_physical">Kupi tiskano knjigo</a>
+        <a class="btn btn-dark" href="./chapters.html" data-i18n="read_online">Beri spletno različico</a>
       </div>
     </header>
 
     <section id="about" class="section">
-      <h2 data-i18n="about_title">About the Book</h2>
+      <h2 data-i18n="about_title">O knjigi</h2>
       <p class="muted" data-i18n="about_text">
-        Replace this text with your real description. You can share your message, your testimony,
-        and what readers should feel when they finish the book.
+        To besedilo zamenjaj s svojim pravim opisom. Lahko deliš svoje sporočilo, pričevanje in občutke, ki jih želiš pustiti bralcem.
       </p>
     </section>
 
     <section id="read" class="section">
-      <h2 data-i18n="read_title">Read Selected Parts</h2>
-      <p class="muted" data-i18n="read_sub">You can publish a few short excerpts here to invite readers in.</p>
+      <h2 data-i18n="read_title">Preberi izbrane dele</h2>
+      <p class="muted" data-i18n="read_sub">Tukaj lahko objaviš nekaj kratkih odlomkov in povabiš bralce v zgodbo.</p>
 
       <div class="grid">
         <article class="card">
-          <h3 data-i18n="ex1_title">Excerpt I — The First Light</h3>
-          <p data-i18n="ex1_text">“In the silence before dawn, he sensed a whisper not of this world...”</p>
+          <h3 data-i18n="ex1_title">Odlomek I — Prva svetloba</h3>
+          <p data-i18n="ex1_text">“V tišini pred zoro je zaslišal šepet, ki ni bil s tega sveta...”</p>
           <div class="audio-row">
-            <button class="btn btn-dark play-btn" data-audio="audio/excerpt1.mp3" data-i18n="play_music">▶ Play Music</button>
+            <button class="btn btn-dark play-btn" data-audio="audio/excerpt1.mp3" data-i18n="play_music">▶ Predvajaj glasbo</button>
             <span class="audio-status">Ready</span>
           </div>
         </article>
 
         <article class="card">
-          <h3 data-i18n="ex2_title">Excerpt II — Through the Veil</h3>
-          <p data-i18n="ex2_text">“The veil between fear and faith trembled, and a narrow path of peace appeared.”</p>
+          <h3 data-i18n="ex2_title">Odlomek II — Skozi tančico</h3>
+          <p data-i18n="ex2_text">“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”</p>
           <div class="audio-row">
-            <button class="btn btn-dark play-btn" data-audio="audio/excerpt2.mp3" data-i18n="play_music">▶ Play Music</button>
+            <button class="btn btn-dark play-btn" data-audio="audio/excerpt2.mp3" data-i18n="play_music">▶ Predvajaj glasbo</button>
             <span class="audio-status">Ready</span>
           </div>
         </article>
       </div>
-
-      <p class="muted" data-i18n="audio_tip">
-        Upload music in <code>/audio</code> as <code>excerpt1.mp3</code>, <code>excerpt2.mp3</code>.
-      </p>
     </section>
 
     <section id="characters" class="section">
-      <h2 data-i18n="char_title">Interactive Character Section</h2>
-      <p class="muted" data-i18n="char_sub">Tap a character card to reveal details.</p>
+      <h2 data-i18n="char_title">Interaktivni del za junake</h2>
+      <p class="muted" data-i18n="char_sub">Klikni junaka za podrobnosti.</p>
 
       <div class="grid">
         <button class="card char-btn"
@@ -183,21 +200,30 @@
     </section>
 
     <section id="buy" class="section">
-      <h2 data-i18n="buy_title">Get the Book</h2>
-      <p class="muted" data-i18n="buy_sub">Connect these buttons to your real purchase links when ready.</p>
+      <h2 data-i18n="buy_title">Pridobi knjigo</h2>
+      <p class="muted" data-i18n="buy_sub">Ko boš pripravljen, poveži gumbe s pravimi nakupnimi povezavami.</p>
       <div class="cta" style="justify-content:flex-start">
-        <a class="btn btn-primary" href="#" target="_blank" rel="noopener" data-i18n="buy_physical">Buy Physical Book</a>
-        <a class="btn btn-dark" href="./chapters.html" data-i18n="read_online">Read Online Version</a>
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener" data-i18n="buy_physical">Kupi tiskano knjigo</a>
+        <a class="btn btn-dark" href="./chapters.html" data-i18n="read_online">Beri spletno različico</a>
       </div>
     </section>
 
     <footer>
-      © <span id="year"></span> <span data-i18n="footer_text">Your Name — Walk in faith, create in wonder.</span>
+      © <span id="year"></span> <span data-i18n="footer_text">Tvoje ime — Hodi v veri, ustvarjaj v čudenju.</span>
     </footer>
   </div>
 
+  <button id="toTop">▲</button>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Scroll to top
+    const toTop = document.getElementById("toTop");
+    window.addEventListener("scroll", () => {
+      toTop.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+    toTop.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
 
     // Character interactivity
     const detail = document.getElementById("charDetail");
@@ -240,7 +266,6 @@
     let currentButton = null;
     document.querySelectorAll(".play-btn").forEach((btn) => {
       const status = btn.parentElement.querySelector(".audio-status");
-
       btn.addEventListener("click", () => {
         const src = btn.dataset.audio;
 
@@ -279,7 +304,7 @@
       });
     });
 
-    // Language switch EN <-> SL
+    // Language switch EN <-> SL (default SL)
     const t = {
       en: {
         brand: "Your Book Title",
@@ -301,7 +326,6 @@
         ex2_title: "Excerpt II — Through the Veil",
         ex2_text: "“The veil between fear and faith trembled, and a narrow path of peace appeared.”",
         play_music: "▶ Play Music",
-        audio_tip: "Upload music in <code>/audio</code> as <code>excerpt1.mp3</code>, <code>excerpt2.mp3</code>.",
         char_title: "Interactive Character Section",
         char_sub: "Tap a character card to reveal details.",
         buy_title: "Get the Book",
@@ -328,7 +352,6 @@
         ex2_title: "Odlomek II — Skozi tančico",
         ex2_text: "“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”",
         play_music: "▶ Predvajaj glasbo",
-        audio_tip: "Naloži glasbo v <code>/audio</code> kot <code>excerpt1.mp3</code>, <code>excerpt2.mp3</code>.",
         char_title: "Interaktivni del za junake",
         char_sub: "Klikni junaka za podrobnosti.",
         buy_title: "Pridobi knjigo",
@@ -337,7 +360,7 @@
       }
     };
 
-    let currentLang = "en";
+    let currentLang = "sl";
     const langBtn = document.getElementById("langToggle");
 
     function applyLang(lang){
@@ -357,7 +380,7 @@
       applyLang(currentLang);
     });
 
-    applyLang("en");
+    applyLang("sl");
   </script>
 </body>
 </html>
