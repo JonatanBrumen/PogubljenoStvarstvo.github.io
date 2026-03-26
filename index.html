@@ -6,25 +6,29 @@
   <title>Your Book Title | A Story of Faith Beyond Worlds</title>
   <style>
     :root{
-      --bg-1:#07070d; --bg-2:#111427; --bg-3:#1d1333;
-      --gold:#e8d7a7; --violet:#8d6bff; --cyan:#77e7ff;
-      --text:#f7f4ee; --muted:#cdc7bb; --card:rgba(17,20,39,0.72);
-      --border:rgba(232,215,167,0.25); --good:#9ee6a2;
+      --black:#0a0a0a;
+      --dark:#111111;
+      --card:#151515;
+      --text:#f7f7f7;
+      --muted:#cfcfcf;
+      --gold:#e8d7a7;
+      --border:rgba(232,215,167,.35);
+      --glow:0 0 18px rgba(232,215,167,.45);
     }
     *{box-sizing:border-box}
     body{
       margin:0;color:var(--text);font-family:Georgia,serif;line-height:1.6;
       background:
-        radial-gradient(circle at 20% 20%, rgba(119,231,255,.12), transparent 25%),
-        radial-gradient(circle at 80% 0%, rgba(141,107,255,.16), transparent 30%),
-        linear-gradient(135deg,var(--bg-1),var(--bg-2) 45%,var(--bg-3));
+        radial-gradient(circle at 20% 20%, rgba(232,215,167,.06), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,.04), transparent 32%),
+        linear-gradient(135deg,var(--black),var(--dark));
       min-height:100vh;
     }
     .wrap{max-width:1080px;margin:auto;padding:1rem}
     nav{
       display:flex;justify-content:space-between;align-items:center;gap:1rem;
       padding:.8rem 0;position:sticky;top:0;z-index:10;
-      backdrop-filter:blur(8px);background:rgba(7,7,13,0.45);
+      backdrop-filter:blur(8px);background:rgba(8,8,8,0.65);
       border-bottom:1px solid rgba(232,215,167,.12);
       flex-wrap:wrap;
     }
@@ -37,6 +41,7 @@
       color:#fff; border-radius:10px; padding:.45rem .7rem; cursor:pointer;
       font-size:.88rem;
     }
+
     .hero{text-align:center;padding:4rem 1rem 3rem}
     .kicker{
       display:inline-block;padding:.35rem .75rem;border-radius:999px;
@@ -50,22 +55,29 @@
       border:none;border-radius:12px;padding:.78rem 1.15rem;color:#fff;text-decoration:none;
       display:inline-block;cursor:pointer;font-weight:700;
     }
-    .btn-primary{background:linear-gradient(90deg,var(--violet),#6ea8ff,var(--cyan))}
-    .btn-gold{background:linear-gradient(90deg,#9f7d2f,#d4b46a,#f0dfb0);color:#241a05}
-    .btn-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16)}
+    .btn-primary{background:linear-gradient(90deg,#b89f5b,#e8d7a7,#f6eac2);color:#221c0f}
+    .btn-dark{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16)}
+
     .section{
       margin:1rem 0 1.4rem;background:var(--card);border:1px solid var(--border);
-      border-radius:16px;padding:1rem;
+      border-radius:16px;padding:1rem;transition:.25s;
     }
+    .section:hover{transform:scale(1.01);box-shadow:var(--glow)}
     .section h2{margin:.2rem 0 .5rem;color:var(--gold)}
     .muted{color:var(--muted)}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem}
-    .excerpt{
-      border:1px solid rgba(119,231,255,.2);background:rgba(8,13,30,.55);
+
+    .card{
+      border:1px solid rgba(232,215,167,.2);
+      background:rgba(12,12,12,.85);
       border-radius:14px;padding:.9rem;
+      transition:.25s;
     }
+    .card:hover{transform:scale(1.03);box-shadow:var(--glow)}
+
     .audio-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-    .audio-status{font-size:.9rem;color:var(--good)}
+    .audio-status{font-size:.9rem;color:var(--gold)}
+
     footer{text-align:center;color:var(--muted);font-size:.92rem;padding:1.4rem 0 2rem}
     code{background:rgba(255,255,255,.08);padding:.12rem .36rem;border-radius:6px}
   </style>
@@ -78,11 +90,12 @@
         <div>
           <a href="#about" data-i18n="nav_about">About</a>
           <a href="#read" data-i18n="nav_read">Read</a>
+          <a href="#characters" data-i18n="nav_characters">Characters</a>
           <a href="#buy" data-i18n="nav_buy">Buy</a>
         </div>
         <div class="top-controls">
+          <button class="mini-btn" id="ambientToggle">Music: Off</button>
           <button class="mini-btn" id="langToggle">SL</button>
-          <button class="mini-btn" id="ambientToggle">🎵 Ambient: Off</button>
         </div>
       </div>
     </nav>
@@ -95,8 +108,8 @@
         and where the light of faith leads through darkness.
       </p>
       <div class="cta">
-        <a class="btn btn-gold" href="#buy" data-i18n="buy_physical">Buy Physical Book</a>
-        <a class="btn btn-primary" href="./chapters.html" data-i18n="read_online">Read Online Version</a>
+        <a class="btn btn-primary" href="#buy" data-i18n="buy_physical">Buy Physical Book</a>
+        <a class="btn btn-dark" href="./chapters.html" data-i18n="read_online">Read Online Version</a>
       </div>
     </header>
 
@@ -113,20 +126,20 @@
       <p class="muted" data-i18n="read_sub">You can publish a few short excerpts here to invite readers in.</p>
 
       <div class="grid">
-        <article class="excerpt">
+        <article class="card">
           <h3 data-i18n="ex1_title">Excerpt I — The First Light</h3>
           <p data-i18n="ex1_text">“In the silence before dawn, he sensed a whisper not of this world...”</p>
           <div class="audio-row">
-            <button class="btn btn-ghost play-btn" data-audio="audio/excerpt1.mp3" data-i18n="play_music">▶ Play Music</button>
+            <button class="btn btn-dark play-btn" data-audio="audio/excerpt1.mp3" data-i18n="play_music">▶ Play Music</button>
             <span class="audio-status">Ready</span>
           </div>
         </article>
 
-        <article class="excerpt">
+        <article class="card">
           <h3 data-i18n="ex2_title">Excerpt II — Through the Veil</h3>
           <p data-i18n="ex2_text">“The veil between fear and faith trembled, and a narrow path of peace appeared.”</p>
           <div class="audio-row">
-            <button class="btn btn-ghost play-btn" data-audio="audio/excerpt2.mp3" data-i18n="play_music">▶ Play Music</button>
+            <button class="btn btn-dark play-btn" data-audio="audio/excerpt2.mp3" data-i18n="play_music">▶ Play Music</button>
             <span class="audio-status">Ready</span>
           </div>
         </article>
@@ -137,12 +150,44 @@
       </p>
     </section>
 
+    <section id="characters" class="section">
+      <h2 data-i18n="char_title">Interactive Character Section</h2>
+      <p class="muted" data-i18n="char_sub">Tap a character card to reveal details.</p>
+
+      <div class="grid">
+        <button class="card char-btn"
+          data-name="Elias"
+          data-role="The Pilgrim"
+          data-detail="Elias battles doubt but learns obedience through trials, becoming a witness of grace in both worlds.">
+          <strong>Elias</strong><br><span class="muted">The Pilgrim</span>
+        </button>
+
+        <button class="card char-btn"
+          data-name="Mara"
+          data-role="Keeper of the Lamp"
+          data-detail="Mara carries ancient writings and reminds others that truth is not hidden from those who seek with a pure heart.">
+          <strong>Mara</strong><br><span class="muted">Keeper of the Lamp</span>
+        </button>
+
+        <button class="card char-btn"
+          data-name="The Voice"
+          data-role="Messenger of Hope"
+          data-detail="A mysterious guide whose words echo scripture-like wisdom, calling the lost toward repentance and courage.">
+          <strong>The Voice</strong><br><span class="muted">Messenger of Hope</span>
+        </button>
+      </div>
+
+      <div class="card" id="charDetail" style="margin-top:.8rem;">
+        Select a character to view details.
+      </div>
+    </section>
+
     <section id="buy" class="section">
       <h2 data-i18n="buy_title">Get the Book</h2>
       <p class="muted" data-i18n="buy_sub">Connect these buttons to your real purchase links when ready.</p>
       <div class="cta" style="justify-content:flex-start">
-        <a class="btn btn-gold" href="#" target="_blank" rel="noopener" data-i18n="buy_physical">Buy Physical Book</a>
-        <a class="btn btn-primary" href="./chapters.html" data-i18n="read_online">Read Online Version</a>
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener" data-i18n="buy_physical">Buy Physical Book</a>
+        <a class="btn btn-dark" href="./chapters.html" data-i18n="read_online">Read Online Version</a>
       </div>
     </section>
 
@@ -154,21 +199,31 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Ambient music toggle (global style)
-    // Upload: audio/ambient.mp3
+    // Character interactivity
+    const detail = document.getElementById("charDetail");
+    document.querySelectorAll(".char-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const name = btn.dataset.name;
+        const role = btn.dataset.role;
+        const text = btn.dataset.detail;
+        detail.innerHTML = `<strong>${name}</strong> — <em>${role}</em><br>${text}`;
+      });
+    });
+
+    // Ambient music toggle
     const ambientBtn = document.getElementById("ambientToggle");
     const ambientAudio = new Audio("audio/ambient.mp3");
     ambientAudio.loop = true;
     ambientAudio.volume = 0.35;
-
     let ambientOn = false;
+
     ambientBtn.addEventListener("click", async () => {
       if (!ambientOn) {
         try {
           await ambientAudio.play();
           ambientOn = true;
-          ambientBtn.textContent = currentLang === "en" ? "🎵 Ambient: On" : "🎵 Ambient: Vklopljeno";
-        } catch (e) {
+          ambientBtn.textContent = currentLang === "en" ? "Music: On" : "Glasba: Vklop";
+        } catch {
           alert(currentLang === "en"
             ? "Could not play ambient music. Check file: audio/ambient.mp3"
             : "Glasbe ni bilo mogoče predvajati. Preveri datoteko: audio/ambient.mp3");
@@ -176,7 +231,7 @@
       } else {
         ambientAudio.pause();
         ambientOn = false;
-        ambientBtn.textContent = currentLang === "en" ? "🎵 Ambient: Off" : "🎵 Ambient: Izklopljeno";
+        ambientBtn.textContent = currentLang === "en" ? "Music: Off" : "Glasba: Izklop";
       }
     });
 
@@ -230,6 +285,7 @@
         brand: "Your Book Title",
         nav_about: "About",
         nav_read: "Read",
+        nav_characters: "Characters",
         nav_buy: "Buy",
         kicker: "Fantasy • Faith • Otherworldly",
         title: "A Journey of Faith Across Worlds",
@@ -246,6 +302,8 @@
         ex2_text: "“The veil between fear and faith trembled, and a narrow path of peace appeared.”",
         play_music: "▶ Play Music",
         audio_tip: "Upload music in <code>/audio</code> as <code>excerpt1.mp3</code>, <code>excerpt2.mp3</code>.",
+        char_title: "Interactive Character Section",
+        char_sub: "Tap a character card to reveal details.",
         buy_title: "Get the Book",
         buy_sub: "Connect these buttons to your real purchase links when ready.",
         footer_text: "Your Name — Walk in faith, create in wonder."
@@ -254,6 +312,7 @@
         brand: "Naslov tvoje knjige",
         nav_about: "O knjigi",
         nav_read: "Branje",
+        nav_characters: "Junaki",
         nav_buy: "Nakup",
         kicker: "Fantazija • Vera • Onstranstvo",
         title: "Popotovanje vere skozi svetove",
@@ -270,6 +329,8 @@
         ex2_text: "“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”",
         play_music: "▶ Predvajaj glasbo",
         audio_tip: "Naloži glasbo v <code>/audio</code> kot <code>excerpt1.mp3</code>, <code>excerpt2.mp3</code>.",
+        char_title: "Interaktivni del za junake",
+        char_sub: "Klikni junaka za podrobnosti.",
         buy_title: "Pridobi knjigo",
         buy_sub: "Ko boš pripravljen, poveži gumbe s pravimi nakupnimi povezavami.",
         footer_text: "Tvoje ime — Hodi v veri, ustvarjaj v čudenju."
@@ -286,13 +347,9 @@
         if (t[lang][key]) el.innerHTML = t[lang][key];
       });
       langBtn.textContent = lang === "en" ? "SL" : "EN";
-
-      // update ambient button label
-      if (ambientOn) {
-        ambientBtn.textContent = lang === "en" ? "🎵 Ambient: On" : "🎵 Ambient: Vklopljeno";
-      } else {
-        ambientBtn.textContent = lang === "en" ? "🎵 Ambient: Off" : "🎵 Ambient: Izklopljeno";
-      }
+      ambientBtn.textContent = ambientOn
+        ? (lang === "en" ? "Music: On" : "Glasba: Vklop")
+        : (lang === "en" ? "Music: Off" : "Glasba: Izklop");
     }
 
     langBtn.addEventListener("click", () => {
