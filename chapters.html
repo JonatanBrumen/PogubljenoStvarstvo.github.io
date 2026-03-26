@@ -84,41 +84,40 @@
 <body>
   <div class="wrap">
     <nav>
-      <div class="brand">✧ <span data-i18n="brand">Naslov tvoje knjige</span></div>
+      <div class="brand">✧ Naslov tvoje knjige</div>
       <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;">
         <div>
-          <a href="./index.html" data-i18n="nav_home">Domov</a>
-          <a href="./chapters.html" data-i18n="nav_readonline">Beri spletno</a>
+          <a href="./index.html">Domov</a>
+          <a href="./chapters.html">Beri spletno</a>
         </div>
         <div class="top-controls">
           <button class="mini-btn" id="ambientToggle">Glasba: Izklop</button>
-          <button class="mini-btn" id="langToggle">EN</button>
         </div>
       </div>
     </nav>
 
     <header>
-      <h1 data-i18n="page_title">Spletno branje</h1>
-      <p class="sub" data-i18n="page_sub">Izberi poglavje in vstopi v svet zgodbe.</p>
+      <h1>Spletno branje</h1>
+      <p class="sub">Izberi poglavje in vstopi v svet zgodbe.</p>
     </header>
 
     <section class="layout">
       <aside class="panel">
-        <strong data-i18n="chapters_label">Poglavja</strong>
+        <strong>Poglavja</strong>
         <div id="chapterList" style="margin-top:.6rem;"></div>
       </aside>
 
       <article class="reader">
         <h2 id="chapterTitle">Izberi poglavje</h2>
         <div id="chapterBody">
-          <p data-i18n="welcome_text">Dobrodošel v spletnem bralniku. Klikni poglavje za začetek.</p>
+          <p>Dobrodošel v spletnem bralniku. Klikni poglavje za začetek.</p>
         </div>
 
         <hr />
 
         <div class="controls">
           <button class="btn btn-audio" id="playChapterAudio">▶ Predvajaj glasbo poglavja</button>
-          <a class="btn btn-home" href="./index.html" data-i18n="back_btn">← Nazaj na glavno stran</a>
+          <a class="btn btn-home" href="./index.html">← Nazaj na glavno stran</a>
         </div>
 
         <p class="note" id="audioNote">
@@ -131,90 +130,22 @@
   <button id="toTop">▲</button>
 
   <script>
-    const t = {
-      en: {
-        brand: "Your Book Title",
-        nav_home: "Home",
-        nav_readonline: "Read Online",
-        page_title: "Read Online",
-        page_sub: "Choose a chapter and enter the story world.",
-        chapters_label: "Chapters",
-        welcome_text: "Welcome to your online reader. Click a chapter to begin.",
-        back_btn: "← Back to Main Site",
-        play_music: "▶ Play Chapter Music",
-        stop_music: "⏸ Stop Chapter Music",
-        ambient_on: "Music: On",
-        ambient_off: "Music: Off",
-        audio_tip_prefix: "Music file:",
-        ch1_title: "Chapter 1 — The Whisper Before Dawn",
-        ch1_body: `<p>The night was not silent—it was listening.</p>
-<p>He stood beneath a sky torn with stars, and in the stillness he felt a Presence near.</p>
-<p>Not fear. Not thunder. A quiet call toward faith.</p>`,
-        ch2_title: "Chapter 2 — Through the Narrow Gate",
-        ch2_body: `<p>The path was thin as a promise and bright as mercy.</p>
-<p>Every step required surrender. Every breath required trust.</p>
-<p>He walked forward, not because he understood, but because he believed.</p>`,
-        ch3_title: "Chapter 3 — Lamps in the Otherworld",
-        ch3_body: `<p>Across the veil, lights burned in places untouched by sun.</p>
-<p>Each lamp marked a life that had chosen hope over despair.</p>
-<p>He wept, then smiled, and kept walking.</p>`
-      },
-      sl: {
-        brand: "Naslov tvoje knjige",
-        nav_home: "Domov",
-        nav_readonline: "Beri spletno",
-        page_title: "Spletno branje",
-        page_sub: "Izberi poglavje in vstopi v svet zgodbe.",
-        chapters_label: "Poglavja",
-        welcome_text: "Dobrodošel v spletnem bralniku. Klikni poglavje za začetek.",
-        back_btn: "← Nazaj na glavno stran",
-        play_music: "▶ Predvajaj glasbo poglavja",
-        stop_music: "⏸ Ustavi glasbo poglavja",
-        ambient_on: "Glasba: Vklop",
-        ambient_off: "Glasba: Izklop",
-        audio_tip_prefix: "Glasbena datoteka:",
-        ch1_title: "1. poglavje — Šepet pred zoro",
-        ch1_body: `<p>Noč ni bila tiha — poslušala je.</p>
+    const chapters = [
+      { id: "ch1", title: "1. poglavje — Šepet pred zoro", audio: "audio/ch1.mp3",
+        body: `<p>Noč ni bila tiha — poslušala je.</p>
 <p>Stal je pod nebom, raztrganim od zvezd, in v miru je začutil bližino Prisotnosti.</p>
-<p>Ne strah. Ne grom. Le tih klic k veri.</p>`,
-        ch2_title: "2. poglavje — Skozi ozka vrata",
-        ch2_body: `<p>Pot je bila ozka kot obljuba in svetla kot usmiljenje.</p>
+<p>Ne strah. Ne grom. Le tih klic k veri.</p>`
+      },
+      { id: "ch2", title: "2. poglavje — Skozi ozka vrata", audio: "audio/ch2.mp3",
+        body: `<p>Pot je bila ozka kot obljuba in svetla kot usmiljenje.</p>
 <p>Vsak korak je zahteval predanost. Vsak vdih je zahteval zaupanje.</p>
-<p>Hodil je naprej — ne zato, ker bi razumel, ampak ker je veroval.</p>`,
-        ch3_title: "3. poglavje — Svetilke v onstranstvu",
-        ch3_body: `<p>Onkraj tančice so gorele luči v krajih, kamor sonce ne seže.</p>
+<p>Hodil je naprej — ne zato, ker bi razumel, ampak ker je veroval.</p>`
+      },
+      { id: "ch3", title: "3. poglavje — Svetilke v onstranstvu", audio: "audio/ch3.mp3",
+        body: `<p>Onkraj tančice so gorele luči v krajih, kamor sonce ne seže.</p>
 <p>Vsaka svetilka je označevala življenje, ki je izbralo upanje namesto obupa.</p>
 <p>Zajokal je, se nasmehnil in šel naprej.</p>`
       }
-    };
-
-    let currentLang = "sl";
-    const langBtn = document.getElementById("langToggle");
-
-    function applyLang(lang){
-      document.documentElement.lang = lang === "en" ? "en" : "sl";
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.dataset.i18n;
-        if (t[lang][key]) el.innerHTML = t[lang][key];
-      });
-
-      langBtn.textContent = (lang === "en" ? "SL" : "EN");
-      ambientBtn.textContent = ambientOn ? t[lang].ambient_on : t[lang].ambient_off;
-      playBtn.textContent = chapterAudio ? t[lang].stop_music : t[lang].play_music;
-
-      renderChapterButtons();
-      if (activeChapter) showChapter(activeChapter.id, false);
-    }
-
-    langBtn.addEventListener("click", () => {
-      currentLang = (currentLang === "en" ? "sl" : "en");
-      applyLang(currentLang);
-    });
-
-    const chapters = [
-      { id: "ch1", audio: "audio/ch1.mp3" },
-      { id: "ch2", audio: "audio/ch2.mp3" },
-      { id: "ch3", audio: "audio/ch3.mp3" }
     ];
 
     const chapterList = document.getElementById("chapterList");
@@ -226,13 +157,10 @@
     let activeChapter = null;
     let chapterAudio = null;
 
-    function chapterTitleKey(id){ return `${id}_title`; }
-    function chapterBodyKey(id){ return `${id}_body`; }
-
     function renderChapterButtons(){
       chapterList.innerHTML = chapters.map(c => `
         <button class="chapter-btn ${activeChapter && activeChapter.id === c.id ? "active" : ""}" data-id="${c.id}">
-          ${t[currentLang][chapterTitleKey(c.id)]}
+          ${c.title}
         </button>
       `).join("");
 
@@ -246,12 +174,12 @@
       if (!ch) return;
       activeChapter = ch;
 
-      chapterTitle.textContent = t[currentLang][chapterTitleKey(id)];
-      chapterBody.innerHTML = t[currentLang][chapterBodyKey(id)];
-      audioNote.innerHTML = `${t[currentLang].audio_tip_prefix} <code>${ch.audio}</code>`;
+      chapterTitle.textContent = ch.title;
+      chapterBody.innerHTML = ch.body;
+      audioNote.innerHTML = `Glasbena datoteka: <code>${ch.audio}</code>`;
 
       if (stopMusic) stopChapterAudio();
-      playBtn.textContent = chapterAudio ? t[currentLang].stop_music : t[currentLang].play_music;
+      playBtn.textContent = chapterAudio ? "⏸ Ustavi glasbo poglavja" : "▶ Predvajaj glasbo poglavja";
 
       renderChapterButtons();
     }
@@ -269,22 +197,22 @@
 
       if (chapterAudio){
         stopChapterAudio();
-        playBtn.textContent = t[currentLang].play_music;
+        playBtn.textContent = "▶ Predvajaj glasbo poglavja";
         return;
       }
 
       try{
         chapterAudio = new Audio(activeChapter.audio);
         await chapterAudio.play();
-        playBtn.textContent = t[currentLang].stop_music;
+        playBtn.textContent = "⏸ Ustavi glasbo poglavja";
         chapterAudio.onended = () => {
           chapterAudio = null;
-          playBtn.textContent = t[currentLang].play_music;
+          playBtn.textContent = "▶ Predvajaj glasbo poglavja";
         };
       } catch(e){
-        alert((currentLang === "en" ? "Could not play chapter music. Check file: " : "Glasbe poglavja ni mogoče predvajati. Preveri datoteko: ") + activeChapter.audio);
+        alert("Glasbe poglavja ni mogoče predvajati. Preveri datoteko: " + activeChapter.audio);
         chapterAudio = null;
-        playBtn.textContent = t[currentLang].play_music;
+        playBtn.textContent = "▶ Predvajaj glasbo poglavja";
       }
     });
 
@@ -300,16 +228,14 @@
         try {
           await ambientAudio.play();
           ambientOn = true;
-          ambientBtn.textContent = t[currentLang].ambient_on;
+          ambientBtn.textContent = "Glasba: Vklop";
         } catch {
-          alert(currentLang === "en"
-            ? "Could not play ambient music. Check file: audio/ambient.mp3"
-            : "Glasbe ni bilo mogoče predvajati. Preveri datoteko: audio/ambient.mp3");
+          alert("Glasbe ni bilo mogoče predvajati. Preveri datoteko: audio/ambient.mp3");
         }
       } else {
         ambientAudio.pause();
         ambientOn = false;
-        ambientBtn.textContent = t[currentLang].ambient_off;
+        ambientBtn.textContent = "Glasba: Izklop";
       }
     });
 
@@ -321,7 +247,7 @@
     toTop.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
 
     // Init
-    applyLang("sl");
+    renderChapterButtons();
     showChapter("ch1", false);
   </script>
 </body>

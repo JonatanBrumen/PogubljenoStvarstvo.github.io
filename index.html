@@ -86,8 +86,16 @@
     }
     .card:hover{transform:scale(1.03);box-shadow:var(--glow)}
 
-    .char-btn strong{font-size:1.2rem}
-    .char-btn .muted{font-size:1rem}
+    /* Character card sizing fix */
+    .char-btn{
+      width:100%;
+      text-align:left;
+      white-space:normal;
+      overflow:visible;
+      line-height:1.35;
+    }
+    .char-btn strong{font-size:1.25rem;display:block}
+    .char-btn .muted{font-size:1.02rem;display:block}
 
     .audio-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
     .audio-status{font-size:.9rem;color:var(--gold)}
@@ -95,7 +103,6 @@
     footer{text-align:center;color:var(--muted);font-size:.92rem;padding:1.4rem 0 2rem}
     code{background:rgba(255,255,255,.08);padding:.12rem .36rem;border-radius:6px}
 
-    /* Scroll to top */
     #toTop{
       position:fixed;right:16px;bottom:16px;z-index:99;
       background:linear-gradient(90deg,#b89f5b,#e8d7a7,#f6eac2);
@@ -108,59 +115,58 @@
 <body>
   <div class="wrap">
     <nav>
-      <div class="brand">✧ <span data-i18n="brand">Naslov tvoje knjige</span></div>
+      <div class="brand">✧ Naslov tvoje knjige</div>
       <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;">
         <div>
-          <a href="#about" data-i18n="nav_about">O knjigi</a>
-          <a href="#read" data-i18n="nav_read">Branje</a>
-          <a href="#characters" data-i18n="nav_characters">Junaki</a>
-          <a href="#buy" data-i18n="nav_buy">Nakup</a>
+          <a href="#about">O knjigi</a>
+          <a href="#read">Branje</a>
+          <a href="#characters">Junaki</a>
+          <a href="#buy">Nakup</a>
         </div>
         <div class="top-controls">
           <button class="mini-btn" id="ambientToggle">Glasba: Izklop</button>
-          <button class="mini-btn" id="langToggle">EN</button>
         </div>
       </div>
     </nav>
 
     <header class="hero">
-      <span class="kicker" data-i18n="kicker">Fantazija • Vera • Onstranstvo</span>
-      <h1 data-i18n="title">Popotovanje vere skozi svetove</h1>
-      <p class="sub" data-i18n="subtitle">
+      <span class="kicker">Fantazija • Vera • Onstranstvo</span>
+      <h1>Popotovanje vere skozi svetove</h1>
+      <p class="sub">
         Vstopi v zgodbo, kjer se večnost dotakne časa, kjer so nevidni svetovi blizu in kjer svetloba vere vodi skozi temo.
       </p>
       <div class="cta">
-        <a class="btn btn-primary" href="#buy" data-i18n="buy_physical">Kupi tiskano knjigo</a>
-        <a class="btn btn-dark" href="./chapters.html" data-i18n="read_online">Beri spletno različico</a>
+        <a class="btn btn-primary" href="#buy">Kupi tiskano knjigo</a>
+        <a class="btn btn-dark" href="./chapters.html">Beri spletno različico</a>
       </div>
     </header>
 
     <section id="about" class="section">
-      <h2 data-i18n="about_title">O knjigi</h2>
-      <p class="muted" data-i18n="about_text">
+      <h2>O knjigi</h2>
+      <p class="muted">
         To besedilo zamenjaj s svojim pravim opisom. Lahko deliš svoje sporočilo, pričevanje in občutke, ki jih želiš pustiti bralcem.
       </p>
     </section>
 
     <section id="read" class="section">
-      <h2 data-i18n="read_title">Preberi izbrane dele</h2>
-      <p class="muted" data-i18n="read_sub">Tukaj lahko objaviš nekaj kratkih odlomkov in povabiš bralce v zgodbo.</p>
+      <h2>Preberi izbrane dele</h2>
+      <p class="muted">Tukaj lahko objaviš nekaj kratkih odlomkov in povabiš bralce v zgodbo.</p>
 
       <div class="grid">
         <article class="card">
-          <h3 data-i18n="ex1_title">Odlomek I — Prva svetloba</h3>
-          <p data-i18n="ex1_text">“V tišini pred zoro je zaslišal šepet, ki ni bil s tega sveta...”</p>
+          <h3>Odlomek I — Prva svetloba</h3>
+          <p>“V tišini pred zoro je zaslišal šepet, ki ni bil s tega sveta...”</p>
           <div class="audio-row">
-            <button class="btn btn-dark play-btn" data-audio="audio/excerpt1.mp3" data-i18n="play_music">▶ Predvajaj glasbo</button>
+            <button class="btn btn-dark play-btn" data-audio="audio/excerpt1.mp3">▶ Predvajaj glasbo</button>
             <span class="audio-status">Ready</span>
           </div>
         </article>
 
         <article class="card">
-          <h3 data-i18n="ex2_title">Odlomek II — Skozi tančico</h3>
-          <p data-i18n="ex2_text">“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”</p>
+          <h3>Odlomek II — Skozi tančico</h3>
+          <p>“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”</p>
           <div class="audio-row">
-            <button class="btn btn-dark play-btn" data-audio="audio/excerpt2.mp3" data-i18n="play_music">▶ Predvajaj glasbo</button>
+            <button class="btn btn-dark play-btn" data-audio="audio/excerpt2.mp3">▶ Predvajaj glasbo</button>
             <span class="audio-status">Ready</span>
           </div>
         </article>
@@ -168,48 +174,51 @@
     </section>
 
     <section id="characters" class="section">
-      <h2 data-i18n="char_title">Interaktivni del za junake</h2>
-      <p class="muted" data-i18n="char_sub">Klikni junaka za podrobnosti.</p>
+      <h2>Interaktivni del za junake</h2>
+      <p class="muted">Klikni junaka za podrobnosti.</p>
 
       <div class="grid">
         <button class="card char-btn"
           data-name="Elias"
-          data-role="The Pilgrim"
-          data-detail="Elias battles doubt but learns obedience through trials, becoming a witness of grace in both worlds.">
-          <strong>Elias</strong><br><span class="muted">The Pilgrim</span>
+          data-role="Romar"
+          data-detail="Elias se bori z dvomom, a skozi preizkušnje raste v veri in postane priča milosti v obeh svetovih.">
+          <strong>Elias</strong>
+          <span class="muted">Romar</span>
         </button>
 
         <button class="card char-btn"
           data-name="Mara"
-          data-role="Keeper of the Lamp"
-          data-detail="Mara carries ancient writings and reminds others that truth is not hidden from those who seek with a pure heart.">
-          <strong>Mara</strong><br><span class="muted">Keeper of the Lamp</span>
+          data-role="Varuhinja svetilke"
+          data-detail="Mara nosi starodavne zapise in spominja, da resnica ni skrita tistim, ki iskreno iščejo.">
+          <strong>Mara</strong>
+          <span class="muted">Varuhinja svetilke</span>
         </button>
 
         <button class="card char-btn"
-          data-name="The Voice"
-          data-role="Messenger of Hope"
-          data-detail="A mysterious guide whose words echo scripture-like wisdom, calling the lost toward repentance and courage.">
-          <strong>The Voice</strong><br><span class="muted">Messenger of Hope</span>
+          data-name="Glas"
+          data-role="Glasnik upanja"
+          data-detail="Skrivnostni vodnik, katerega besede odmevajo kot modrost iz Pisma in kličejo izgubljene k pogumu.">
+          <strong>Glas</strong>
+          <span class="muted">Glasnik upanja</span>
         </button>
       </div>
 
       <div class="card" id="charDetail" style="margin-top:.8rem;">
-        Select a character to view details.
+        Izberi junaka za prikaz podrobnosti.
       </div>
     </section>
 
     <section id="buy" class="section">
-      <h2 data-i18n="buy_title">Pridobi knjigo</h2>
-      <p class="muted" data-i18n="buy_sub">Ko boš pripravljen, poveži gumbe s pravimi nakupnimi povezavami.</p>
+      <h2>Pridobi knjigo</h2>
+      <p class="muted">Ko boš pripravljen, poveži gumbe s pravimi nakupnimi povezavami.</p>
       <div class="cta" style="justify-content:flex-start">
-        <a class="btn btn-primary" href="#" target="_blank" rel="noopener" data-i18n="buy_physical">Kupi tiskano knjigo</a>
-        <a class="btn btn-dark" href="./chapters.html" data-i18n="read_online">Beri spletno različico</a>
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Kupi tiskano knjigo</a>
+        <a class="btn btn-dark" href="./chapters.html">Beri spletno različico</a>
       </div>
     </section>
 
     <footer>
-      © <span id="year"></span> <span data-i18n="footer_text">Tvoje ime — Hodi v veri, ustvarjaj v čudenju.</span>
+      © <span id="year"></span> Tvoje ime — Hodi v veri, ustvarjaj v čudenju.
     </footer>
   </div>
 
@@ -248,16 +257,14 @@
         try {
           await ambientAudio.play();
           ambientOn = true;
-          ambientBtn.textContent = currentLang === "en" ? "Music: On" : "Glasba: Vklop";
+          ambientBtn.textContent = "Glasba: Vklop";
         } catch {
-          alert(currentLang === "en"
-            ? "Could not play ambient music. Check file: audio/ambient.mp3"
-            : "Glasbe ni bilo mogoče predvajati. Preveri datoteko: audio/ambient.mp3");
+          alert("Glasbe ni bilo mogoče predvajati. Preveri datoteko: audio/ambient.mp3");
         }
       } else {
         ambientAudio.pause();
         ambientOn = false;
-        ambientBtn.textContent = currentLang === "en" ? "Music: Off" : "Glasba: Izklop";
+        ambientBtn.textContent = "Glasba: Izklop";
       }
     });
 
@@ -272,115 +279,37 @@
         if (currentAudio) {
           currentAudio.pause();
           currentAudio.currentTime = 0;
-          if (currentButton) currentButton.textContent = t[currentLang].play_music;
+          if (currentButton) currentButton.textContent = "▶ Predvajaj glasbo";
         }
 
         if (currentButton === btn) {
           currentAudio = null;
           currentButton = null;
-          status.textContent = currentLang === "en" ? "Stopped" : "Ustavljeno";
+          status.textContent = "Ustavljeno";
           return;
         }
 
         const audio = new Audio(src);
         currentAudio = audio;
         currentButton = btn;
-        btn.textContent = currentLang === "en" ? "⏸ Stop Music" : "⏸ Ustavi glasbo";
-        status.textContent = currentLang === "en" ? "Playing..." : "Predvajanje...";
+        btn.textContent = "⏸ Ustavi glasbo";
+        status.textContent = "Predvajanje...";
 
         audio.play().catch(() => {
-          status.textContent = currentLang === "en" ? "Could not play (check file path)" : "Ni mogoče predvajati (preveri pot datoteke)";
-          btn.textContent = t[currentLang].play_music;
+          status.textContent = "Ni mogoče predvajati (preveri pot datoteke)";
+          btn.textContent = "▶ Predvajaj glasbo";
           currentAudio = null;
           currentButton = null;
         });
 
         audio.onended = () => {
-          btn.textContent = t[currentLang].play_music;
-          status.textContent = currentLang === "en" ? "Finished" : "Končano";
+          btn.textContent = "▶ Predvajaj glasbo";
+          status.textContent = "Končano";
           currentAudio = null;
           currentButton = null;
         };
       });
     });
-
-    // Language switch EN <-> SL (default SL)
-    const t = {
-      en: {
-        brand: "Your Book Title",
-        nav_about: "About",
-        nav_read: "Read",
-        nav_characters: "Characters",
-        nav_buy: "Buy",
-        kicker: "Fantasy • Faith • Otherworldly",
-        title: "A Journey of Faith Across Worlds",
-        subtitle: "Enter a story where eternity touches time, where unseen realms are near, and where the light of faith leads through darkness.",
-        buy_physical: "Buy Physical Book",
-        read_online: "Read Online Version",
-        about_title: "About the Book",
-        about_text: "Replace this text with your real description. You can share your message, your testimony, and what readers should feel when they finish the book.",
-        read_title: "Read Selected Parts",
-        read_sub: "You can publish a few short excerpts here to invite readers in.",
-        ex1_title: "Excerpt I — The First Light",
-        ex1_text: "“In the silence before dawn, he sensed a whisper not of this world...”",
-        ex2_title: "Excerpt II — Through the Veil",
-        ex2_text: "“The veil between fear and faith trembled, and a narrow path of peace appeared.”",
-        play_music: "▶ Play Music",
-        char_title: "Interactive Character Section",
-        char_sub: "Tap a character card to reveal details.",
-        buy_title: "Get the Book",
-        buy_sub: "Connect these buttons to your real purchase links when ready.",
-        footer_text: "Your Name — Walk in faith, create in wonder."
-      },
-      sl: {
-        brand: "Naslov tvoje knjige",
-        nav_about: "O knjigi",
-        nav_read: "Branje",
-        nav_characters: "Junaki",
-        nav_buy: "Nakup",
-        kicker: "Fantazija • Vera • Onstranstvo",
-        title: "Popotovanje vere skozi svetove",
-        subtitle: "Vstopi v zgodbo, kjer se večnost dotakne časa, kjer so nevidni svetovi blizu in kjer svetloba vere vodi skozi temo.",
-        buy_physical: "Kupi tiskano knjigo",
-        read_online: "Beri spletno različico",
-        about_title: "O knjigi",
-        about_text: "To besedilo zamenjaj s svojim pravim opisom. Lahko deliš svoje sporočilo, pričevanje in občutke, ki jih želiš pustiti bralcem.",
-        read_title: "Preberi izbrane dele",
-        read_sub: "Tukaj lahko objaviš nekaj kratkih odlomkov in povabiš bralce v zgodbo.",
-        ex1_title: "Odlomek I — Prva svetloba",
-        ex1_text: "“V tišini pred zoro je zaslišal šepet, ki ni bil s tega sveta...”",
-        ex2_title: "Odlomek II — Skozi tančico",
-        ex2_text: "“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”",
-        play_music: "▶ Predvajaj glasbo",
-        char_title: "Interaktivni del za junake",
-        char_sub: "Klikni junaka za podrobnosti.",
-        buy_title: "Pridobi knjigo",
-        buy_sub: "Ko boš pripravljen, poveži gumbe s pravimi nakupnimi povezavami.",
-        footer_text: "Tvoje ime — Hodi v veri, ustvarjaj v čudenju."
-      }
-    };
-
-    let currentLang = "sl";
-    const langBtn = document.getElementById("langToggle");
-
-    function applyLang(lang){
-      document.documentElement.lang = lang === "en" ? "en" : "sl";
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.dataset.i18n;
-        if (t[lang][key]) el.innerHTML = t[lang][key];
-      });
-      langBtn.textContent = lang === "en" ? "SL" : "EN";
-      ambientBtn.textContent = ambientOn
-        ? (lang === "en" ? "Music: On" : "Glasba: Vklop")
-        : (lang === "en" ? "Music: Off" : "Glasba: Izklop");
-    }
-
-    langBtn.addEventListener("click", () => {
-      currentLang = currentLang === "en" ? "sl" : "en";
-      applyLang(currentLang);
-    });
-
-    applyLang("sl");
   </script>
 </body>
 </html>
