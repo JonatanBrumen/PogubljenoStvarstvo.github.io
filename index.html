@@ -3,104 +3,365 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book Title | Official Site</title>
+  <title>Your Book Title | A Story of Faith Beyond Worlds</title>
   <style>
     :root{
-      --bg:#0f1115;
-      --card:#171a21;
-      --text:#eef1f6;
-      --muted:#b8c0cc;
-      --accent:#8b5cf6;
-      --accent2:#06b6d4;
+      --bg-1:#07070d;
+      --bg-2:#111427;
+      --bg-3:#1d1333;
+      --gold:#e8d7a7;
+      --violet:#8d6bff;
+      --cyan:#77e7ff;
+      --text:#f7f4ee;
+      --muted:#cdc7bb;
+      --card:rgba(17,20,39,0.72);
+      --border:rgba(232,215,167,0.25);
+      --good:#9ee6a2;
     }
+
     *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
     body{
-      margin:0;
-      font-family: Inter, Arial, sans-serif;
-      background: linear-gradient(120deg,var(--bg),#121826);
       color:var(--text);
+      font-family: "Georgia", "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(119,231,255,.12), transparent 25%),
+        radial-gradient(circle at 80% 0%, rgba(141,107,255,.16), transparent 30%),
+        linear-gradient(135deg,var(--bg-1),var(--bg-2) 45%,var(--bg-3));
+      min-height:100vh;
       line-height:1.6;
     }
-    .wrap{max-width:980px;margin:auto;padding:1rem}
-    nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0}
-    nav a{color:var(--muted);text-decoration:none;margin-left:1rem}
+
+    .stars::before,.stars::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.45), transparent 60%),
+        radial-gradient(1.5px 1.5px at 70% 20%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(1.5px 1.5px at 40% 80%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(2px 2px at 85% 75%, rgba(255,255,255,.3), transparent 60%);
+      animation: drift 16s linear infinite;
+    }
+    .stars::after{animation-duration:28s; opacity:.6}
+    @keyframes drift {
+      from{transform:translateY(0)}
+      to{transform:translateY(-30px)}
+    }
+
+    .wrap{max-width:1080px;margin:auto;padding:1rem}
+    nav{
+      display:flex;justify-content:space-between;align-items:center;
+      gap:1rem;padding:.8rem 0; position:sticky; top:0;
+      backdrop-filter: blur(8px);
+      background:rgba(7,7,13,0.45);
+      border-bottom:1px solid rgba(232,215,167,.12);
+      z-index:10;
+    }
+    .brand{
+      font-weight:700; letter-spacing:.5px; color:var(--gold);
+      text-shadow:0 0 18px rgba(232,215,167,.25);
+    }
+    nav a{
+      color:var(--muted); text-decoration:none; margin-left:1rem; font-size:.95rem;
+    }
     nav a:hover{color:var(--text)}
+
     .hero{
-      padding:4rem 0 3rem;
-      text-align:center;
+      text-align:center; padding:4.5rem 1rem 3.5rem;
     }
-    .badge{
-      display:inline-block;
-      background:rgba(139,92,246,.2);
-      color:#d8c7ff;
-      padding:.3rem .7rem;border-radius:999px;font-size:.85rem
+    .kicker{
+      display:inline-block; padding:.35rem .75rem; border-radius:999px;
+      border:1px solid var(--border); color:var(--gold);
+      background:rgba(232,215,167,.08); font-size:.82rem; letter-spacing:.4px;
     }
-    h1{font-size:2.3rem;line-height:1.2;margin:.8rem 0}
-    .sub{color:var(--muted);max-width:700px;margin:auto}
-    .cta{margin-top:1.4rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+    h1{
+      margin:.9rem 0 .6rem; font-size:clamp(2rem,4.8vw,3.6rem); line-height:1.15;
+      color:var(--text);
+      text-shadow:0 0 24px rgba(141,107,255,.25);
+    }
+    .sub{
+      max-width:760px; margin:auto; color:var(--muted);
+      font-size:1.06rem;
+    }
+
+    .cta{margin-top:1.4rem; display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap;}
     .btn{
-      border:none;border-radius:10px;padding:.75rem 1.1rem;
-      text-decoration:none;color:white;font-weight:600;display:inline-block
+      border:none; border-radius:12px; padding:.78rem 1.15rem;
+      color:#fff; text-decoration:none; display:inline-block; cursor:pointer;
+      font-weight:700; letter-spacing:.2px;
     }
-    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2))}
-    .btn-secondary{background:#2a3040}
+    .btn-primary{
+      background:linear-gradient(90deg,var(--violet),#6ea8ff,var(--cyan));
+      box-shadow:0 8px 25px rgba(109,142,255,.28);
+    }
+    .btn-gold{
+      background:linear-gradient(90deg,#9f7d2f,#d4b46a,#f0dfb0);
+      color:#241a05;
+      box-shadow:0 8px 24px rgba(232,215,167,.25);
+    }
+    .btn-ghost{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    .section{
+      margin:1.1rem 0 1.5rem;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:1rem;
+      box-shadow:0 6px 26px rgba(0,0,0,.25);
+    }
+    .section h2{
+      margin:.2rem 0 .5rem;
+      color:var(--gold);
+      font-size:1.5rem;
+    }
+    .muted{color:var(--muted)}
+
     .grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:1rem;margin:2rem 0 3rem
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:.9rem;
     }
-    .card{
-      background:var(--card);border:1px solid #232838;border-radius:14px;padding:1rem
+
+    .excerpt{
+      border:1px solid rgba(119,231,255,.2);
+      background:rgba(8,13,30,.55);
+      border-radius:14px;
+      padding:.9rem;
     }
-    h2{margin-top:0}
-    footer{color:var(--muted);font-size:.9rem;padding:1rem 0 2rem;text-align:center}
+    .excerpt h3{margin:.1rem 0 .4rem;font-size:1.05rem}
+    .excerpt p{margin:.2rem 0 .65rem;color:#e8e3d8}
+
+    .audio-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+    .audio-status{font-size:.9rem;color:var(--good)}
+
+    .character-cards{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem;
+      margin-top:.5rem;
+    }
+    .char-btn{
+      width:100%;
+      text-align:left;
+      background:linear-gradient(160deg,rgba(141,107,255,.17),rgba(119,231,255,.09));
+      color:var(--text);
+      border:1px solid rgba(232,215,167,.25);
+      padding:.8rem;border-radius:12px; cursor:pointer;
+      font-weight:700;
+    }
+    .char-btn small{display:block;font-weight:400;color:var(--muted);margin-top:.2rem}
+    .char-detail{
+      margin-top:.8rem; padding:.8rem; border-radius:12px;
+      border:1px dashed rgba(232,215,167,.35); color:#f2eee5;
+      background:rgba(255,255,255,.03);
+      min-height:92px;
+    }
+
+    footer{
+      text-align:center; color:var(--muted);
+      font-size:.92rem; padding:1.4rem 0 2.1rem;
+    }
+
+    .note{
+      margin-top:.45rem;
+      font-size:.88rem;
+      color:#d7d0c2;
+    }
+    code{
+      background:rgba(255,255,255,.08);
+      padding:.12rem .36rem;border-radius:6px;
+    }
   </style>
 </head>
 <body>
+  <div class="stars"></div>
   <div class="wrap">
+
     <nav>
-      <strong>Pogubljeno Stvarstvo</strong>
+      <div class="brand">✧ Your Book Title</div>
       <div>
         <a href="#about">About</a>
-        <a href="#sample">Sample</a>
+        <a href="#read">Read</a>
+        <a href="#music">Music</a>
+        <a href="#characters">Characters</a>
         <a href="#buy">Buy</a>
       </div>
     </nav>
 
-    <section class="hero">
-      <span class="badge">Official Author Site</span>
-      <h1>Pogubljeno stvarstvo</h1>
+    <header class="hero">
+      <span class="kicker">Fantasy • Faith • Otherworldly</span>
+      <h1>A Journey of Faith Across Worlds</h1>
       <p class="sub">
-        A story world you can explore. Read excerpts, meet characters, and get launch updates.
+        Enter a story where eternity touches time, where unseen realms are near,
+        and where the light of faith leads through darkness.
       </p>
       <div class="cta">
-        <a class="btn btn-primary" href="#buy">Buy the Book</a>
-        <a class="btn btn-secondary" href="#sample">Read Sample</a>
+        <a class="btn btn-gold" href="#buy">Buy Physical Book</a>
+        <a class="btn btn-primary" href="./chapters.html">Read Online Version</a>
+      </div>
+    </header>
+
+    <section id="about" class="section">
+      <h2>About the Book</h2>
+      <p class="muted">
+        Replace this text with your real description. You can share your message, your testimony,
+        and what readers should feel when they finish the book.
+      </p>
+    </section>
+
+    <section id="read" class="section">
+      <h2>Read Selected Parts</h2>
+      <p class="muted">You can publish a few short excerpts here to invite readers in.</p>
+
+      <div class="grid">
+        <article class="excerpt">
+          <h3>Excerpt I — The First Light</h3>
+          <p>
+            “In the silence before dawn, he sensed a whisper not of this world,
+            yet nearer than breath…”
+          </p>
+          <div class="audio-row">
+            <button class="btn btn-ghost play-btn" data-audio="audio/excerpt1.mp3">▶ Play Music</button>
+            <span class="audio-status" id="status-1">Ready</span>
+          </div>
+        </article>
+
+        <article class="excerpt">
+          <h3>Excerpt II — Through the Veil</h3>
+          <p>
+            “The veil between fear and faith trembled, and a narrow path of peace appeared.”
+          </p>
+          <div class="audio-row">
+            <button class="btn btn-ghost play-btn" data-audio="audio/excerpt2.mp3">▶ Play Music</button>
+            <span class="audio-status" id="status-2">Ready</span>
+          </div>
+        </article>
+      </div>
+
+      <p id="music" class="note">
+        Music files should be uploaded in your repo under <code>/audio</code> as:
+        <code>excerpt1.mp3</code>, <code>excerpt2.mp3</code>.
+      </p>
+    </section>
+
+    <section id="characters" class="section">
+      <h2>Interactive Character Section</h2>
+      <p class="muted">
+        Tap a character card to reveal details, symbolism, and their faith journey.
+      </p>
+
+      <div class="character-cards">
+        <button class="char-btn"
+          data-name="Elias"
+          data-role="The Pilgrim"
+          data-detail="Elias battles doubt but learns obedience through trials, becoming a witness of grace in both worlds.">
+          Elias
+          <small>The Pilgrim</small>
+        </button>
+
+        <button class="char-btn"
+          data-name="Mara"
+          data-role="Keeper of the Lamp"
+          data-detail="Mara carries ancient writings and reminds others that truth is not hidden from those who seek with a pure heart.">
+          Mara
+          <small>Keeper of the Lamp</small>
+        </button>
+
+        <button class="char-btn"
+          data-name="The Voice"
+          data-role="Messenger of Hope"
+          data-detail="A mysterious guide whose words echo scripture-like wisdom, calling the lost toward repentance and courage.">
+          The Voice
+          <small>Messenger of Hope</small>
+        </button>
+      </div>
+
+      <div class="char-detail" id="charDetail">
+        Select a character to view details.
       </div>
     </section>
 
-    <section id="about" class="grid">
-      <article class="card">
-        <h2>About the Book</h2>
-        <p>Write a short, exciting summary that hooks readers in 3–5 lines.</p>
-      </article>
-      <article class="card" id="sample">
-        <h2>Sample Chapter</h2>
-        <p>Add a teaser paragraph or opening page to build interest.</p>
-      </article>
-      <article class="card" id="buy">
-        <h2>Buy</h2>
-        <p>When ready, replace this button with your Stripe/Gumroad/Amazon link.</p>
-        <p><a class="btn btn-primary" href="#" target="_blank" rel="noopener">Buy Now</a></p>
-      </article>
+    <section id="buy" class="section">
+      <h2>Get the Book</h2>
+      <p class="muted">Connect these buttons to your real purchase links when ready.</p>
+      <div class="cta" style="justify-content:flex-start">
+        <a class="btn btn-gold" href="#" target="_blank" rel="noopener">Buy Physical Copy</a>
+        <a class="btn btn-primary" href="./chapters.html">Read Online Version</a>
+      </div>
+      <p class="note">
+        Example online options: Gumroad PDF/ePub, Payhip digital download, or a private members page.
+      </p>
     </section>
 
     <footer>
-      © <span id="year"></span> Jonatan Brumen. All rights reserved.
+      © <span id="year"></span> Your Name — Walk in faith, create in wonder.
     </footer>
   </div>
 
   <script>
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Character interactivity
+    const detail = document.getElementById("charDetail");
+    document.querySelectorAll(".char-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const name = btn.dataset.name;
+        const role = btn.dataset.role;
+        const text = btn.dataset.detail;
+        detail.innerHTML = `<strong>${name}</strong> — <em>${role}</em><br>${text}`;
+      });
+    });
+
+    // Excerpt music playback
+    let currentAudio = null;
+    let currentButton = null;
+
+    document.querySelectorAll(".play-btn").forEach((btn, i) => {
+      const status = document.getElementById(`status-${i+1}`);
+
+      btn.addEventListener("click", () => {
+        const src = btn.dataset.audio;
+
+        // stop current audio if playing
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          if (currentButton) currentButton.textContent = "▶ Play Music";
+        }
+
+        // if same button clicked again, stop only
+        if (currentButton === btn) {
+          currentAudio = null;
+          currentButton = null;
+          status.textContent = "Stopped";
+          return;
+        }
+
+        const audio = new Audio(src);
+        currentAudio = audio;
+        currentButton = btn;
+        btn.textContent = "⏸ Stop Music";
+        status.textContent = "Playing...";
+
+        audio.play().catch(() => {
+          status.textContent = "Could not play (check file path)";
+          btn.textContent = "▶ Play Music";
+          currentAudio = null;
+          currentButton = null;
+        });
+
+        audio.onended = () => {
+          btn.textContent = "▶ Play Music";
+          status.textContent = "Finished";
+          currentAudio = null;
+          currentButton = null;
+        };
+      });
+    });
   </script>
 </body>
 </html>
