@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Title | Official Site</title>
+  <style>
+    :root{
+      --bg:#0f1115;
+      --card:#171a21;
+      --text:#eef1f6;
+      --muted:#b8c0cc;
+      --accent:#8b5cf6;
+      --accent2:#06b6d4;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(120deg,var(--bg),#121826);
+      color:var(--text);
+      line-height:1.6;
+    }
+    .wrap{max-width:980px;margin:auto;padding:1rem}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0}
+    nav a{color:var(--muted);text-decoration:none;margin-left:1rem}
+    nav a:hover{color:var(--text)}
+    .hero{
+      padding:4rem 0 3rem;
+      text-align:center;
+    }
+    .badge{
+      display:inline-block;
+      background:rgba(139,92,246,.2);
+      color:#d8c7ff;
+      padding:.3rem .7rem;border-radius:999px;font-size:.85rem
+    }
+    h1{font-size:2.3rem;line-height:1.2;margin:.8rem 0}
+    .sub{color:var(--muted);max-width:700px;margin:auto}
+    .cta{margin-top:1.4rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+    .btn{
+      border:none;border-radius:10px;padding:.75rem 1.1rem;
+      text-decoration:none;color:white;font-weight:600;display:inline-block
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .btn-secondary{background:#2a3040}
+    .grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:1rem;margin:2rem 0 3rem
+    }
+    .card{
+      background:var(--card);border:1px solid #232838;border-radius:14px;padding:1rem
+    }
+    h2{margin-top:0}
+    footer{color:var(--muted);font-size:.9rem;padding:1rem 0 2rem;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <strong>Pogubljeno Stvarstvo</strong>
+      <div>
+        <a href="#about">About</a>
+        <a href="#sample">Sample</a>
+        <a href="#buy">Buy</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <span class="badge">Official Author Site</span>
+      <h1>Pogubljeno stvarstvo</h1>
+      <p class="sub">
+        A story world you can explore. Read excerpts, meet characters, and get launch updates.
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#buy">Buy the Book</a>
+        <a class="btn btn-secondary" href="#sample">Read Sample</a>
+      </div>
+    </section>
+
+    <section id="about" class="grid">
+      <article class="card">
+        <h2>About the Book</h2>
+        <p>Write a short, exciting summary that hooks readers in 3–5 lines.</p>
+      </article>
+      <article class="card" id="sample">
+        <h2>Sample Chapter</h2>
+        <p>Add a teaser paragraph or opening page to build interest.</p>
+      </article>
+      <article class="card" id="buy">
+        <h2>Buy</h2>
+        <p>When ready, replace this button with your Stripe/Gumroad/Amazon link.</p>
+        <p><a class="btn btn-primary" href="#" target="_blank" rel="noopener">Buy Now</a></p>
+      </article>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Jonatan Brumen. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
