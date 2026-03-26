@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Read Online | Your Book Title</title>
+  <style>
+    :root{
+      --bg:#0d1020;
+      --bg2:#1a1330;
+      --text:#f5f1e8;
+      --muted:#c9c2b5;
+      --gold:#e8d7a7;
+      --violet:#8d6bff;
+      --card:rgba(255,255,255,.05);
+      --border:rgba(232,215,167,.25);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Georgia, "Times New Roman", serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(141,107,255,.15), transparent 30%),
+        linear-gradient(135deg,var(--bg),var(--bg2));
+      line-height:1.7;
+    }
+    .wrap{max-width:1000px;margin:auto;padding:1rem}
+    nav{
+      display:flex;justify-content:space-between;align-items:center;
+      gap:1rem;padding:1rem 0;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    nav a{color:var(--muted);text-decoration:none;margin-left:1rem}
+    nav a:hover{color:var(--text)}
+    .brand{color:var(--gold);font-weight:700}
+    h1{margin:1.2rem 0 .4rem;font-size:2rem}
+    .sub{color:var(--muted);margin-top:0}
+
+    .layout{
+      display:grid;grid-template-columns:260px 1fr;gap:1rem;margin-top:1rem;
+    }
+    @media (max-width: 860px){ .layout{grid-template-columns:1fr;} }
+
+    .panel{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:.8rem;
+    }
+
+    .chapter-btn{
+      width:100%; text-align:left; cursor:pointer;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      border-radius:10px;
+      padding:.65rem .7rem;
+      margin-bottom:.5rem;
+      font-family:inherit;
+    }
+    .chapter-btn:hover{border-color:rgba(232,215,167,.45)}
+    .chapter-btn.active{
+      border-color:var(--gold);
+      background:rgba(232,215,167,.08);
+    }
+
+    .reader{
+      background:rgba(10,12,24,.72);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:1rem;
+      min-height:420px;
+    }
+    .reader h2{margin-top:0;color:var(--gold)}
+    .reader p{color:#f0ebde}
+
+    .controls{
+      display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem;
+    }
+    .btn{
+      border:none;cursor:pointer;border-radius:10px;
+      padding:.6rem .9rem;font-weight:700;
+    }
+    .btn-home{background:#2e3650;color:#fff;text-decoration:none;display:inline-block}
+    .btn-audio{background:linear-gradient(90deg,var(--violet),#62b2ff);color:#fff}
+    .note{color:var(--muted);font-size:.9rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <div class="brand">✧ Your Book Title</div>
+      <div>
+        <a href="./index.html">Home</a>
+        <a href="./chapters.html">Read Online</a>
+      </div>
+    </nav>
+
+    <header>
+      <h1>Read Online</h1>
+      <p class="sub">Choose a chapter on the left. You can also attach chapter music.</p>
+    </header>
+
+    <section class="layout">
+      <aside class="panel" id="chapterList"></aside>
+
+      <article class="reader">
+        <h2 id="chapterTitle">Select a chapter</h2>
+        <div id="chapterBody">
+          <p>Welcome to your online reader. Click a chapter to begin.</p>
+        </div>
+
+        <div class="controls">
+          <button class="btn btn-audio" id="playChapterAudio">▶ Play Chapter Music</button>
+          <a class="btn btn-home" href="./index.html">← Back to Main Site</a>
+        </div>
+        <p class="note" id="audioNote">
+          Tip: Upload music as <code>audio/ch1.mp3</code>, <code>audio/ch2.mp3</code>, etc.
+        </p>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    // --- EDIT THIS CONTENT WITH YOUR REAL CHAPTERS ---
+    const chapters = [
+      {
+        id: "ch1",
+        title: "Chapter 1 — The Whisper Before Dawn",
+        audio: "audio/ch1.mp3",
+        content: `
+          <p>The night was not silent—it was listening.</p>
+          <p>He stood beneath a sky torn with stars, and in the stillness he felt a Presence near.</p>
+          <p>Not fear. Not thunder. A quiet call toward faith.</p>
+        `
+      },
+      {
+        id: "ch2",
+        title: "Chapter 2 — Through the Narrow Gate",
+        audio: "audio/ch2.mp3",
+        content: `
+          <p>The path was thin as a promise and bright as mercy.</p>
+          <p>Every step required surrender. Every breath required trust.</p>
+          <p>He walked forward, not because he understood, but because he believed.</p>
+        `
+      },
+      {
+        id: "ch3",
+        title: "Chapter 3 — Lamps in the Otherworld",
+        audio: "audio/ch3.mp3",
+        content: `
+          <p>Across the veil, lights burned in places untouched by sun.</p>
+          <p>Each lamp marked a life that had chosen hope over despair.</p>
+          <p>He wept, then smiled, and kept walking.</p>
+        `
+      }
+    ];
+
+    const chapterList = document.getElementById("chapterList");
+    const chapterTitle = document.getElementById("chapterTitle");
+    const chapterBody = document.getElementById("chapterBody");
+    const playBtn = document.getElementById("playChapterAudio");
+    const audioNote = document.getElementById("audioNote");
+
+    let activeChapter = null;
+    let currentAudio = null;
+
+    function renderChapterButtons() {
+      chapterList.innerHTML = chapters.map((c, i) => `
+        <button class="chapter-btn ${i === 0 ? "active" : ""}" data-id="${c.id}">
+          ${c.title}
+        </button>
+      `).join("");
+
+      document.querySelectorAll(".chapter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".chapter-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const chapter = chapters.find(c => c.id === btn.dataset.id);
+          showChapter(chapter);
+        });
+      });
+
+      // load first chapter by default
+      if (chapters.length) showChapter(chapters[0]);
+    }
+
+    function showChapter(chapter) {
+      activeChapter = chapter;
+      chapterTitle.textContent = chapter.title;
+      chapterBody.innerHTML = chapter.content;
+      audioNote.innerHTML = `Music file: <code>${chapter.audio}</code>`;
+      stopAudio();
+      playBtn.textContent = "▶ Play Chapter Music";
+    }
+
+    function stopAudio() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+    }
+
+    playBtn.addEventListener("click", async () => {
+      if (!activeChapter) return;
+
+      // If currently playing, stop
+      if (currentAudio) {
+        stopAudio();
+        playBtn.textContent = "▶ Play Chapter Music";
+        return;
+      }
+
+      try {
+        currentAudio = new Audio(activeChapter.audio);
+        await currentAudio.play();
+        playBtn.textContent = "⏸ Stop Chapter Music";
+
+        currentAudio.onended = () => {
+          currentAudio = null;
+          playBtn.textContent = "▶ Play Chapter Music";
+        };
+      } catch (e) {
+        alert("Could not play audio. Check file path: " + activeChapter.audio);
+        currentAudio = null;
+        playBtn.textContent = "▶ Play Chapter Music";
+      }
+    });
+
+    renderChapterButtons();
+  </script>
+</body>
+</html>
