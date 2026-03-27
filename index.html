@@ -6,31 +6,18 @@
   <title>Naslov knjige | Zgodba vere onkraj svetov</title>
   <style>
     :root{
-      --black:#0a0a0a;
-      --dark:#111111;
-      --card:#151515;
-      --text:#f7f7f7;
-      --muted:#d8d8d8;
-      --gold:#e8d7a7;
-      --border:rgba(232,215,167,.35);
-      --glow:0 0 22px rgba(232,215,167,.6);
+      --black:#0a0a0a; --dark:#111111; --card:#151515;
+      --text:#f7f7f7; --muted:#d8d8d8; --gold:#e8d7a7;
+      --border:rgba(232,215,167,.30); --glow:0 0 18px rgba(232,215,167,.35);
+      --soft:0 0 18px rgba(0,0,0,.6);
     }
     *{box-sizing:border-box}
     body{
-      margin:0;
-      font-family:Georgia,serif;
-      color:var(--text);
-      background:#0a0a0a;
-      min-height:100vh;
-      position:relative;
-      overflow-x:hidden;
+      margin:0;font-family:Georgia,serif;color:var(--text);
+      background:#0a0a0a;min-height:100vh;position:relative;overflow-x:hidden;
     }
-
-    /* BRIGHTER + MORE MOVEMENT */
     body::before, body::after{
-      content:"";
-      position:fixed; inset:-30%;
-      z-index:-2;
+      content:"";position:fixed; inset:-30%;z-index:-2;
       background:
         radial-gradient(circle at 30% 20%, rgba(255,255,255,.30), transparent 35%),
         radial-gradient(circle at 80% 15%, rgba(232,215,167,.30), transparent 35%),
@@ -39,146 +26,74 @@
         linear-gradient(135deg, #0b0b0b, #222, #111);
       animation: drift 10s ease-in-out infinite;
     }
-    body::after{
-      z-index:-3;
-      opacity:.9;
-      animation: drift2 14s ease-in-out infinite;
-      filter: blur(26px);
-    }
-    @keyframes drift{
-      0%{transform:translate3d(0,0,0) scale(1)}
-      50%{transform:translate3d(-8%,5%,0) scale(1.25)}
-      100%{transform:translate3d(0,0,0) scale(1)}
-    }
-    @keyframes drift2{
-      0%{transform:translate3d(0,0,0) scale(1.2)}
-      50%{transform:translate3d(8%,-5%,0) scale(1.3)}
-      100%{transform:translate3d(0,0,0) scale(1.2)}
-    }
-
-    .bg-layer{position:fixed;inset:0;z-index:-4;pointer-events:none;}
-    .stars{
-      background-image:
-        radial-gradient(3px 3px at 15% 25%, rgba(255,255,255,.95), transparent 60%),
-        radial-gradient(2.5px 2.5px at 70% 20%, rgba(255,255,255,.85), transparent 60%),
-        radial-gradient(2px 2px at 40% 80%, rgba(255,255,255,.8), transparent 60%),
-        radial-gradient(3px 3px at 85% 75%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(2.5px 2.5px at 10% 60%, rgba(255,255,255,.75), transparent 60%),
-        radial-gradient(2.5px 2.5px at 55% 45%, rgba(255,255,255,.75), transparent 60%);
-      animation: starsMove 40s linear infinite;
-      opacity:1;
-    }
-    .dust{
-      background-image:
-        radial-gradient(4px 4px at 30% 40%, rgba(232,215,167,1), transparent 60%),
-        radial-gradient(3px 3px at 70% 60%, rgba(232,215,167,.9), transparent 60%),
-        radial-gradient(2.5px 2.5px at 50% 20%, rgba(232,215,167,.95), transparent 60%),
-        radial-gradient(3px 3px at 80% 30%, rgba(232,215,167,.85), transparent 60%),
-        radial-gradient(4px 4px at 20% 80%, rgba(232,215,167,.95), transparent 60%);
-      animation: dustFloat 22s ease-in-out infinite;
-      opacity:1;
-    }
-    .noise{
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
-      animation: noiseMove 2s steps(2) infinite;
-      opacity:.45;
-      mix-blend-mode:screen;
-    }
-    .mist{
-      background:
-        radial-gradient(circle at 50% 25%, rgba(255,255,255,.25), transparent 60%),
-        radial-gradient(circle at 20% 60%, rgba(255,255,255,.18), transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(232,215,167,.18), transparent 60%);
-      opacity:1;
-      animation: mistFloat 22s ease-in-out infinite;
-    }
-    @keyframes starsMove{from{transform:translateY(0)} to{transform:translateY(-360px)}}
-    @keyframes dustFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(-55px, 30px)}}
-    @keyframes noiseMove{0%{transform:translate(0,0)} 100%{transform:translate(-12px,12px)}}
-    @keyframes mistFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(40px, -20px)}}
+    body::after{z-index:-3;opacity:.9;animation: drift2 14s ease-in-out infinite;filter: blur(26px);}
+    @keyframes drift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-8%,5%,0) scale(1.25)}100%{transform:translate3d(0,0,0) scale(1)}}
+    @keyframes drift2{0%{transform:translate3d(0,0,0) scale(1.2)}50%{transform:translate3d(8%,-5%,0) scale(1.3)}100%{transform:translate3d(0,0,0) scale(1.2)}}
 
     .wrap{max-width:1080px;margin:auto;padding:1rem}
     nav{
       display:flex;justify-content:space-between;align-items:center;gap:1rem;
-      padding:.8rem 0;position:sticky;top:0;z-index:10;
+      padding:.9rem 1.25rem;position:sticky;top:0;z-index:10;
       backdrop-filter:blur(10px);background:rgba(10,10,10,0.7);
-      border-bottom:1px solid rgba(232,215,167,.12);
-      flex-wrap:wrap;
+      border-bottom:1px solid rgba(232,215,167,.12);border-radius:10px;
     }
     .brand{font-weight:700;color:var(--gold)}
     nav a{color:var(--muted);text-decoration:none;margin-left:1rem}
     nav a:hover{color:var(--text)}
-    .top-controls{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-    .mini-btn{
-      border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08);
-      color:#fff; border-radius:10px; padding:.45rem .7rem; cursor:pointer;
-      font-size:.88rem;
-    }
+    .top-controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+    .mini-btn{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:10px;padding:.45rem .7rem;cursor:pointer;font-size:.88rem;}
 
     .hero{text-align:center;padding:4rem 1rem 3rem}
-    .kicker{
-      display:inline-block;padding:.35rem .75rem;border-radius:999px;
-      border:1px solid var(--border);color:var(--gold);background:rgba(232,215,167,.12);
-      font-size:.82rem;
-    }
-    h1{
-      margin:.9rem 0 .6rem;
-      font-size:clamp(2.1rem,4.8vw,3.6rem);
-      animation: glow 3s ease-in-out infinite;
-      text-shadow:0 0 18px rgba(232,215,167,.4);
-    }
-    @keyframes glow{
-      0%,100%{text-shadow:0 0 12px rgba(232,215,167,.35)}
-      50%{text-shadow:0 0 30px rgba(232,215,167,.9)}
-    }
-
+    .kicker{display:inline-block;padding:.35rem .75rem;border-radius:999px;border:1px solid var(--border);color:var(--gold);background:rgba(232,215,167,.12);font-size:.82rem;}
+    h1{margin:.9rem 0 .6rem;font-size:clamp(2.1rem,4.8vw,3.6rem);animation: glow 3s ease-in-out infinite;text-shadow:0 0 18px rgba(232,215,167,.4);}
+    @keyframes glow{0%,100%{text-shadow:0 0 12px rgba(232,215,167,.35)}50%{text-shadow:0 0 26px rgba(232,215,167,.7)}}
     .sub{max-width:760px;margin:auto;color:var(--muted)}
     .cta{margin-top:1.4rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
-    .btn{
-      border:none;border-radius:12px;padding:.78rem 1.15rem;color:#fff;text-decoration:none;
-      display:inline-block;cursor:pointer;font-weight:700;
-    }
+    .btn{border:none;border-radius:12px;padding:.78rem 1.15rem;color:#fff;text-decoration:none;display:inline-block;cursor:pointer;font-weight:700;}
     .btn-primary{background:linear-gradient(90deg,#b89f5b,#e8d7a7,#f6eac2);color:#221c0f}
     .btn-dark{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2)}
 
-    .section{
-      margin:1rem 0 1.4rem;background:rgba(20,20,20,.85);border:1px solid var(--border);
-      border-radius:16px;padding:1rem;transition:.25s;
-    }
-    .section:hover{transform:scale(1.01);box-shadow:var(--glow)}
+    .section{margin:1rem 0 1.4rem;background:rgba(20,20,20,.85);border:1px solid var(--border);border-radius:16px;padding:1rem;transition:.25s;}
+    .section:hover{transform:scale(1.01);box-shadow:var(--soft)}
     .section h2{margin:.2rem 0 .5rem;color:var(--gold)}
     .muted{color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem}
 
-    .card{
-      border:1px solid rgba(232,215,167,.25);
+    /* CAROUSEL */
+    .carousel-viewport{overflow:hidden;width:100%;}
+    .carousel-track{display:flex;gap:1rem;transition:transform 2.8s ease-in-out;will-change:transform;}
+    .excerpt-card{
+      border:1px solid rgba(232,215,167,.18);
       background:rgba(14,14,14,.9);
-      border-radius:14px;padding:1rem;
-      transition:.25s;
-      font-size:1.05rem;
-      cursor:pointer;
+      border-radius:14px;
+      padding:1rem;font-size:1.05rem;
+      cursor:pointer;flex:0 0 calc(50% - .5rem);
+      height:190px;transition:box-shadow .35s ease, transform .35s ease;
+      box-shadow:var(--soft);
     }
-    .card:hover{transform:scale(1.03);box-shadow:var(--glow)}
+    .excerpt-card:hover{box-shadow:0 0 18px rgba(232,215,167,.28);transform:translateY(-2px);}
 
-    .audio-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+    /* SNAP EFFECT */
+    .snap{
+      transform:translateX(var(--snap-shift));
+      transition:transform .35s ease-out;
+    }
+
+    .char-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem;}
+    .char-card{
+      border:1px solid rgba(232,215,167,.2);
+      background:rgba(12,12,12,.85);
+      border-radius:14px;padding:1rem;transition:.25s;font-size:1.05rem;cursor:pointer;
+      box-shadow:var(--soft);
+    }
+    .char-card:hover{transform:scale(1.03);box-shadow:0 0 18px rgba(232,215,167,.3);}
+
+    /* Description box should not be clickable */
+    #charDetail{pointer-events:none;}
 
     footer{text-align:center;color:var(--muted);font-size:.92rem;padding:1.4rem 0 2rem}
-
-    #toTop{
-      position:fixed;right:16px;bottom:16px;z-index:99;
-      background:linear-gradient(90deg,#b89f5b,#e8d7a7,#f6eac2);
-      color:#221c0f;border:none;border-radius:999px;
-      padding:.6rem .9rem;font-weight:700;cursor:pointer;
-      box-shadow:var(--glow);display:none;
-    }
   </style>
 </head>
 <body>
-  <div class="bg-layer stars"></div>
-  <div class="bg-layer dust"></div>
-  <div class="bg-layer noise"></div>
-  <div class="bg-layer mist"></div>
-
   <div class="wrap">
     <nav>
       <div class="brand">✧ Naslov tvoje knjige</div>
@@ -186,6 +101,7 @@
         <div>
           <a href="#about">O knjigi</a>
           <a href="#read">Branje</a>
+          <a href="#thoughts">Misli</a>
           <a href="#characters">Junaki</a>
           <a href="#buy">Nakup</a>
         </div>
@@ -198,9 +114,7 @@
     <header class="hero">
       <span class="kicker">Fantazija • Vera • Onstranstvo</span>
       <h1>Popotovanje vere skozi svetove</h1>
-      <p class="sub">
-        Vstopi v zgodbo, kjer se večnost dotakne časa, kjer so nevidni svetovi blizu in kjer svetloba vere vodi skozi temo.
-      </p>
+      <p class="sub">Vstopi v zgodbo, kjer se večnost dotakne časa, kjer so nevidni svetovi blizu in kjer svetloba vere vodi skozi temo.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#buy">Kupi tiskano knjigo</a>
         <a class="btn btn-dark" href="https://example.com" target="_blank" rel="noopener">Kupi spletno različico</a>
@@ -209,71 +123,40 @@
 
     <section id="about" class="section">
       <h2>O knjigi</h2>
-      <p class="muted">
-        To besedilo zamenjaj s svojim pravim opisom. Lahko deliš svoje sporočilo, pričevanje in občutke, ki jih želiš pustiti bralcem.
-      </p>
+      <p class="muted">To besedilo zamenjaj s svojim pravim opisom.</p>
     </section>
 
     <section id="read" class="section">
       <h2>Preberi izbrane dele</h2>
-      <p class="muted">Klikni odlomek za ogled vseh odlomkov.</p>
-
-      <div class="grid">
-        <article class="card" onclick="location.href='chapters.html'">
-          <h3>Odlomek I — Prva svetloba</h3>
-          <p>“V tišini pred zoro je zaslišal šepet, ki ni bil s tega sveta...”</p>
-          <div class="audio-row">
-            <button class="btn btn-dark play-btn" data-audio="audio/excerpt1.mp3">▶ Predvajaj glasbo</button>
-          </div>
-        </article>
-
-        <article class="card" onclick="location.href='chapters.html'">
-          <h3>Odlomek II — Skozi tančico</h3>
-          <p>“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”</p>
-          <div class="audio-row">
-            <button class="btn btn-dark play-btn" data-audio="audio/excerpt2.mp3">▶ Predvajaj glasbo</button>
-          </div>
-        </article>
+      <p class="muted">Dve kartici sta vedno vidni, nato se gladko premakneta v levo.</p>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="excerptTrack"></div>
       </div>
-
       <div class="cta" style="justify-content:flex-start;margin-top:1rem;">
         <a class="btn btn-dark" href="./chapters.html">Pokaži več</a>
+      </div>
+    </section>
+
+    <section id="thoughts" class="section">
+      <h2>Misli</h2>
+      <p class="muted">Posebne misli, ki spremljajo zgodbo.</p>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="thoughtTrack"></div>
+      </div>
+      <div class="cta" style="justify-content:flex-start;margin-top:1rem;">
+        <a class="btn btn-dark" href="./misli.html">Pokaži več</a>
       </div>
     </section>
 
     <section id="characters" class="section">
       <h2>Interaktivni del za junake</h2>
       <p class="muted">Klikni junaka za podrobnosti.</p>
-
-      <div class="grid">
-        <button class="card char-btn"
-          data-name="Elias"
-          data-role="Romar"
-          data-detail="Elias se bori z dvomom, a skozi preizkušnje raste v veri in postane priča milosti v obeh svetovih.">
-          <strong>Elias</strong>
-          <span class="muted">Romar</span>
-        </button>
-
-        <button class="card char-btn"
-          data-name="Mara"
-          data-role="Varuhinja svetilke"
-          data-detail="Mara nosi starodavne zapise in spominja, da resnica ni skrita tistim, ki iskreno iščejo.">
-          <strong>Mara</strong>
-          <span class="muted">Varuhinja svetilke</span>
-        </button>
-
-        <button class="card char-btn"
-          data-name="Glas"
-          data-role="Glasnik upanja"
-          data-detail="Skrivnostni vodnik, katerega besede odmevajo kot modrost iz Pisma in kličejo izgubljene k pogumu.">
-          <strong>Glas</strong>
-          <span class="muted">Glasnik upanja</span>
-        </button>
+      <div class="char-grid">
+        <button class="char-card" data-name="Elias" data-role="Romar" data-detail="Elias se bori z dvomom, a skozi preizkušnje raste v veri in postane priča milosti v obeh svetovih."><strong>Elias</strong><br><span class="muted">Romar</span></button>
+        <button class="char-card" data-name="Mara" data-role="Varuhinja svetilke" data-detail="Mara nosi starodavne zapise in spominja, da resnica ni skrita tistim, ki iskreno iščejo."><strong>Mara</strong><br><span class="muted">Varuhinja svetilke</span></button>
+        <button class="char-card" data-name="Glas" data-role="Glasnik upanja" data-detail="Skrivnostni vodnik, katerega besede odmevujejo kot modrost iz Pisma in kličejo izgubljene k pogumu."><strong>Glas</strong><br><span class="muted">Glasnik upanja</span></button>
       </div>
-
-      <div class="card" id="charDetail" style="margin-top:.8rem;">
-        Izberi junaka za prikaz podrobnosti.
-      </div>
+      <div class="char-card" id="charDetail" style="margin-top:.8rem;">Izberi junaka za prikaz podrobnosti.</div>
     </section>
 
     <section id="buy" class="section">
@@ -285,90 +168,97 @@
       </div>
     </section>
 
-    <footer>
-      © <span id="year"></span> Tvoje ime — Hodi v veri, ustvarjaj v čudenju.
-    </footer>
+    <footer>© <span id="year"></span> Tvoje ime — Hodi v veri, ustvarjaj v čudenju.</footer>
   </div>
-
-  <button id="toTop">▲</button>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const toTop = document.getElementById("toTop");
-    window.addEventListener("scroll", () => {
-      toTop.style.display = window.scrollY > 300 ? "block" : "none";
-    });
-    toTop.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+    const excerpts = [
+      { id:"ex1", title:"Odlomek I — Prva svetloba", text:"V tišini pred zoro je zaslišal šepet, ki ni bil s tega sveta..." },
+      { id:"ex2", title:"Odlomek II — Skozi tančico", text:"Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru." },
+      { id:"ex3", title:"Odlomek III — Svetilke v onstranstvu", text:"Onkraj tančice so gorele luči v krajih, kamor sonce ne seže." },
+      { id:"ex4", title:"Odlomek IV — Klic v tišini", text:"Ko je vse utihnilo, je v srcu zazvenel glas, ki ga ni mogel zanikati." },
+      { id:"ex5", title:"Odlomek V — Pot luči", text:"Svetloba je rezala temo, in vsak korak je bil kakor obljuba." }
+    ];
+
+    const thoughts = [
+      { id:"th1", title:"Misli I — Tišina", text:"V tišini pogosto slišiš najbolj resnične stvari." },
+      { id:"th2", title:"Misli II — Pot", text:"Pot je daljša, ko pozabiš, zakaj si krenil." },
+      { id:"th3", title:"Misli III — Upanje", text:"Upanje ni občutek, je odločitev." },
+      { id:"th4", title:"Misli IV — Luč", text:"Tudi majhna luč razbije veliko temo." }
+    ];
+
+    function initCarousel(trackId, items, linkBase){
+      const track = document.getElementById(trackId);
+      const doubled = [...items, ...items];
+      track.innerHTML = doubled.map(it => `
+        <article class="excerpt-card" onclick="location.href='${linkBase}?id=${it.id}'">
+          <h3>${it.title}</h3>
+          <p>“${it.text}”</p>
+        </article>
+      `).join("");
+
+      let index = 0;
+      let step = 0;
+      const originalLen = items.length;
+
+      function calcStep(){
+        const card = track.querySelector(".excerpt-card");
+        if (!card) return;
+        const gap = parseFloat(getComputedStyle(track).gap || "0");
+        step = card.getBoundingClientRect().width + gap;
+      }
+
+      function slide(){
+        index++;
+        track.classList.add("snap");
+        track.style.setProperty("--snap-shift", "-6px");
+        setTimeout(()=>track.style.setProperty("--snap-shift","0px"),200);
+
+        track.style.transition = "transform 2.8s ease-in-out";
+        track.style.transform = `translateX(${-index * step}px)`;
+
+        if (index >= originalLen){
+          track.addEventListener("transitionend", resetOnce, { once:true });
+        }
+      }
+
+      function resetOnce(){
+        track.style.transition = "none";
+        index = 0;
+        track.style.transform = "translateX(0px)";
+        track.offsetHeight;
+      }
+
+      calcStep();
+      window.addEventListener("resize", () => { calcStep(); track.style.transform = "translateX(0px)"; index = 0; });
+
+      setInterval(slide, 7000);
+    }
+
+    initCarousel("excerptTrack", excerpts, "chapters.html");
+    initCarousel("thoughtTrack", thoughts, "misli.html");
 
     const detail = document.getElementById("charDetail");
-    document.querySelectorAll(".char-btn").forEach(btn => {
+    document.querySelectorAll(".char-card").forEach(btn => {
       btn.addEventListener("click", () => {
-        const name = btn.dataset.name;
-        const role = btn.dataset.role;
-        const text = btn.dataset.detail;
-        detail.innerHTML = `<strong>${name}</strong> — <em>${role}</em><br>${text}`;
+        detail.innerHTML = `<strong>${btn.dataset.name}</strong> — <em>${btn.dataset.role}</em><br>${btn.dataset.detail}`;
       });
     });
 
     const ambientBtn = document.getElementById("ambientToggle");
     const ambientAudio = new Audio("audio/ambient.mp3");
-    ambientAudio.loop = true;
-    ambientAudio.volume = 0.35;
+    ambientAudio.loop = true; ambientAudio.volume = 0.35;
     let ambientOn = false;
 
     ambientBtn.addEventListener("click", async () => {
       if (!ambientOn) {
-        try {
-          await ambientAudio.play();
-          ambientOn = true;
-          ambientBtn.textContent = "Glasba: Vklop";
-        } catch {
-          alert("Glasbe ni bilo mogoče predvajati. Preveri datoteko: audio/ambient.mp3");
-        }
+        try { await ambientAudio.play(); ambientOn = true; ambientBtn.textContent = "Glasba: Vklop"; }
+        catch { alert("Glasbe ni bilo mogoče predvajati. Preveri datoteko: audio/ambient.mp3"); }
       } else {
-        ambientAudio.pause();
-        ambientOn = false;
-        ambientBtn.textContent = "Glasba: Izklop";
+        ambientAudio.pause(); ambientOn = false; ambientBtn.textContent = "Glasba: Izklop";
       }
-    });
-
-    let currentAudio = null;
-    let currentButton = null;
-    document.querySelectorAll(".play-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const src = btn.dataset.audio;
-
-        if (currentAudio) {
-          currentAudio.pause();
-          currentAudio.currentTime = 0;
-          if (currentButton) currentButton.textContent = "▶ Predvajaj glasbo";
-        }
-
-        if (currentButton === btn) {
-          currentAudio = null;
-          currentButton = null;
-          return;
-        }
-
-        const audio = new Audio(src);
-        currentAudio = audio;
-        currentButton = btn;
-        btn.textContent = "⏸ Ustavi glasbo";
-
-        audio.play().catch(() => {
-          btn.textContent = "▶ Predvajaj glasbo";
-          currentAudio = null;
-          currentButton = null;
-        });
-
-        audio.onended = () => {
-          btn.textContent = "▶ Predvajaj glasbo";
-          currentAudio = null;
-          currentButton = null;
-        };
-      });
     });
   </script>
 </body>

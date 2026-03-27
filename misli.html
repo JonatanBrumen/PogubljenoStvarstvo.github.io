@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Odlomki | Naslov knjige</title>
+  <title>Misli | Naslov knjige</title>
   <style>
     :root{
       --black:#0a0a0a;--dark:#111111;--card:#151515;
@@ -12,10 +12,7 @@
       --soft:0 0 18px rgba(0,0,0,.6);
     }
     *{box-sizing:border-box}
-    body{
-      margin:0;font-family:Georgia,serif;color:var(--text);
-      background:#0a0a0a;min-height:100vh;position:relative;overflow-x:hidden;
-    }
+    body{margin:0;font-family:Georgia,serif;color:var(--text);background:#0a0a0a;min-height:100vh;position:relative;overflow-x:hidden;}
     body::before, body::after{
       content:"";position:fixed; inset:-30%;z-index:-2;
       background:
@@ -94,19 +91,19 @@
     </nav>
 
     <header>
-      <h1>Odlomki</h1>
-      <p class="sub">Izberi odlomek na levi strani.</p>
+      <h1>Misli</h1>
+      <p class="sub">Posebne misli na levi strani.</p>
     </header>
 
     <section class="layout">
       <aside class="panel">
-        <strong>Odlomki</strong>
+        <strong>Misli</strong>
         <div id="excerptList" style="margin-top:.6rem;"></div>
       </aside>
 
       <article class="reader">
-        <h2 id="excerptTitle">Izberi odlomek</h2>
-        <div id="excerptBody"><p>Dobrodošel v odlomkih. Klikni odlomek za začetek.</p></div>
+        <h2 id="excerptTitle">Izberi misel</h2>
+        <div id="excerptBody"><p>Dobrodošel v mislih. Klikni misel za začetek.</p></div>
 
         <hr />
         <div class="controls">
@@ -120,18 +117,10 @@
 
   <script>
     const excerpts = [
-      { id: "ex1", title: "Odlomek I — Prva svetloba", audio: "audio/excerpt1.mp3",
-        body: `<p>“V tišini pred zoro je zaslišal šepet, ki ni bil s tega sveta...”</p>` },
-      { id: "ex2", title: "Odlomek II — Skozi tančico", audio: "audio/excerpt2.mp3",
-        body: `<p>“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”</p>` },
-      { id: "ex3", title: "Odlomek III — Svetilke v onstranstvu", audio: "audio/excerpt3.mp3",
-        body: `<p>“Onkraj tančice so gorele luči v krajih, kamor sonce ne seže.”</p>` },
-      { id: "ex4", title: "Odlomek IV — Klic v tišini", audio: "audio/excerpt4.mp3",
-        body: `<p>“Ko je vse utihnilo, je v srcu zazvenel glas, ki ga ni mogel zanikati.”</p>` },
-      { id: "ex5", title: "Odlomek V — Pot luči", audio: "audio/excerpt5.mp3",
-        body: `<p>“Svetloba je rezala temo, in vsak korak je bil kakor obljuba.”</p>` },
-      { id: "ex6", title: "Odlomek VI — Nebo brez konca", audio: "audio/excerpt6.mp3",
-        body: `<p>“Zvezde so se zdele bližje kot kdajkoli, kot da bi mu nebo šepetalo.”</p>` }
+      { id: "th1", title: "Misli I — Tišina", audio: "audio/thought1.mp3", body: `<p>“V tišini pogosto slišiš najbolj resnične stvari.”</p>` },
+      { id: "th2", title: "Misli II — Pot", audio: "audio/thought2.mp3", body: `<p>“Pot je daljša, ko pozabiš, zakaj si krenil.”</p>` },
+      { id: "th3", title: "Misli III — Upanje", audio: "audio/thought3.mp3", body: `<p>“Upanje ni občutek, je odločitev.”</p>` },
+      { id: "th4", title: "Misli IV — Luč", audio: "audio/thought4.mp3", body: `<p>“Tudi majhna luč razbije veliko temo.”</p>` }
     ];
 
     const excerptList = document.getElementById("excerptList");
