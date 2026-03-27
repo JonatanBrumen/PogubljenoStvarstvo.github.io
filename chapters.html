@@ -3,58 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spletno branje | Naslov knjige</title>
+  <title>Odlomki | Naslov knjige</title>
   <style>
     :root{
       --black:#0a0a0a;
       --dark:#111111;
       --card:#151515;
       --text:#f7f7f7;
-      --muted:#cfcfcf;
+      --muted:#d8d8d8;
       --gold:#e8d7a7;
       --border:rgba(232,215,167,.35);
-      --glow:0 0 22px rgba(232,215,167,.5);
+      --glow:0 0 22px rgba(232,215,167,.6);
     }
     *{box-sizing:border-box}
     body{
-      margin:0;font-family:Georgia,serif;color:var(--text);
+      margin:0;
+      font-family:Georgia,serif;
+      color:var(--text);
       background:#0a0a0a;
       min-height:100vh;
       position:relative;
       overflow-x:hidden;
     }
 
-    /* BRIGHTER + MORE MOTION */
+    /* BRIGHTER + MORE MOVEMENT */
     body::before, body::after{
       content:"";
-      position:fixed; inset:-25%;
+      position:fixed; inset:-30%;
       z-index:-2;
       background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,.20), transparent 35%),
-        radial-gradient(circle at 80% 15%, rgba(232,215,167,.25), transparent 35%),
-        radial-gradient(circle at 20% 80%, rgba(255,255,255,.18), transparent 40%),
-        radial-gradient(circle at 70% 70%, rgba(232,215,167,.22), transparent 45%),
-        linear-gradient(135deg, #0b0b0b, #1d1d1d, #101010);
-      animation: drift 14s ease-in-out infinite;
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.30), transparent 35%),
+        radial-gradient(circle at 80% 15%, rgba(232,215,167,.30), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,.26), transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(232,215,167,.28), transparent 45%),
+        linear-gradient(135deg, #0b0b0b, #222, #111);
+      animation: drift 10s ease-in-out infinite;
     }
     body::after{
       z-index:-3;
-      opacity:.85;
-      animation: drift2 20s ease-in-out infinite;
-      filter: blur(20px);
+      opacity:.9;
+      animation: drift2 14s ease-in-out infinite;
+      filter: blur(26px);
     }
     @keyframes drift{
       0%{transform:translate3d(0,0,0) scale(1)}
-      50%{transform:translate3d(-6%,4%,0) scale(1.15)}
+      50%{transform:translate3d(-8%,5%,0) scale(1.25)}
       100%{transform:translate3d(0,0,0) scale(1)}
     }
     @keyframes drift2{
-      0%{transform:translate3d(0,0,0) scale(1.15)}
-      50%{transform:translate3d(6%,-4%,0) scale(1.2)}
-      100%{transform:translate3d(0,0,0) scale(1.15)}
+      0%{transform:translate3d(0,0,0) scale(1.2)}
+      50%{transform:translate3d(8%,-5%,0) scale(1.3)}
+      100%{transform:translate3d(0,0,0) scale(1.2)}
     }
 
-    /* EXTREME LAYERS */
     .bg-layer{position:fixed;inset:0;z-index:-4;pointer-events:none;}
     .stars{
       background-image:
@@ -64,7 +65,8 @@
         radial-gradient(3px 3px at 85% 75%, rgba(255,255,255,.9), transparent 60%),
         radial-gradient(2.5px 2.5px at 10% 60%, rgba(255,255,255,.75), transparent 60%),
         radial-gradient(2.5px 2.5px at 55% 45%, rgba(255,255,255,.75), transparent 60%);
-      animation: starsMove 50s linear infinite; opacity:1;
+      animation: starsMove 40s linear infinite;
+      opacity:1;
     }
     .dust{
       background-image:
@@ -73,32 +75,33 @@
         radial-gradient(2.5px 2.5px at 50% 20%, rgba(232,215,167,.95), transparent 60%),
         radial-gradient(3px 3px at 80% 30%, rgba(232,215,167,.85), transparent 60%),
         radial-gradient(4px 4px at 20% 80%, rgba(232,215,167,.95), transparent 60%);
-      animation: dustFloat 28s ease-in-out infinite; opacity:1;
+      animation: dustFloat 22s ease-in-out infinite;
+      opacity:1;
     }
     .noise{
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
-      animation: noiseMove 2.5s steps(2) infinite;
-      opacity:.35;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+      animation: noiseMove 2s steps(2) infinite;
+      opacity:.45;
       mix-blend-mode:screen;
     }
     .mist{
       background:
-        radial-gradient(circle at 50% 25%, rgba(255,255,255,.18), transparent 60%),
-        radial-gradient(circle at 20% 60%, rgba(255,255,255,.10), transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(232,215,167,.12), transparent 60%);
+        radial-gradient(circle at 50% 25%, rgba(255,255,255,.25), transparent 60%),
+        radial-gradient(circle at 20% 60%, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(232,215,167,.18), transparent 60%);
       opacity:1;
-      animation: mistFloat 30s ease-in-out infinite;
+      animation: mistFloat 22s ease-in-out infinite;
     }
-    @keyframes starsMove{from{transform:translateY(0)} to{transform:translateY(-320px)}}
-    @keyframes dustFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(-45px, 25px)}}
-    @keyframes noiseMove{0%{transform:translate(0,0)} 100%{transform:translate(-10px,10px)}}
-    @keyframes mistFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(30px, -18px)}}
+    @keyframes starsMove{from{transform:translateY(0)} to{transform:translateY(-360px)}}
+    @keyframes dustFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(-55px, 30px)}}
+    @keyframes noiseMove{0%{transform:translate(0,0)} 100%{transform:translate(-12px,12px)}}
+    @keyframes mistFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(40px, -20px)}}
 
     .wrap{max-width:1100px;margin:auto;padding:1rem}
     nav{
       display:flex;justify-content:space-between;align-items:center;gap:.8rem;
       padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.1);
-      position:sticky;top:0;backdrop-filter:blur(7px);background:rgba(8,8,8,.65);z-index:10;
+      position:sticky;top:0;backdrop-filter:blur(10px);background:rgba(10,10,10,.7);z-index:10;
       flex-wrap:wrap;
     }
     .brand{color:var(--gold);font-weight:700}
@@ -106,7 +109,7 @@
     nav a:hover{color:var(--text)}
     .top-controls{display:flex;gap:.5rem;flex-wrap:wrap}
     .mini-btn{
-      border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08);
       color:#fff; border-radius:10px; padding:.45rem .7rem; cursor:pointer;
       font-size:.88rem;
     }
@@ -117,37 +120,37 @@
     @media (max-width: 920px){ .layout{grid-template-columns:1fr;} }
 
     .panel,.reader{
-      background:var(--card);border:1px solid var(--border);
+      background:rgba(20,20,20,.85);border:1px solid var(--border);
       border-radius:14px;padding:.8rem;transition:.25s;
     }
     .panel:hover,.reader:hover{transform:scale(1.01);box-shadow:var(--glow)}
 
-    .chapter-btn{
+    .excerpt-btn{
       width:100%;text-align:left;cursor:pointer;
       border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);color:var(--text);
-      border-radius:10px;padding:.65rem .7rem;margin-bottom:.5rem;
+      background:rgba(255,255,255,.05);color:var(--text);
+      border-radius:10px;padding:.7rem;margin-bottom:.5rem;
       font-family:inherit;transition:.25s;
     }
-    .chapter-btn:hover{transform:scale(1.03);box-shadow:var(--glow)}
-    .chapter-btn.active{border-color:var(--gold);background:rgba(232,215,167,.1)}
+    .excerpt-btn:hover{transform:scale(1.03);box-shadow:var(--glow)}
+    .excerpt-btn.active{border-color:var(--gold);background:rgba(232,215,167,.12)}
 
     .reader h2{margin-top:0;color:var(--gold)}
     .reader hr{border:none;height:1px;background:rgba(232,215,167,.2);margin:1rem 0;}
     .controls{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem;}
     .btn{border:none;cursor:pointer;border-radius:10px;padding:.62rem .95rem;font-weight:700;}
-    .btn-home{background:#2e2e2e;color:#fff;text-decoration:none;display:inline-block}
     .btn-audio{background:linear-gradient(90deg,#b89f5b,#e8d7a7,#f6eac2);color:#221c0f}
+    .btn-nav{background:rgba(255,255,255,.12);color:#fff}
 
-    .note{color:var(--muted);font-size:.9rem;margin-top:.6rem}
-    code{background:rgba(255,255,255,.08);padding:.12rem .36rem;border-radius:6px}
-
-    #toTop{
-      position:fixed;right:16px;bottom:16px;z-index:99;
-      background:linear-gradient(90deg,#b89f5b,#e8d7a7,#f6eac2);
-      color:#221c0f;border:none;border-radius:999px;
-      padding:.6rem .9rem;font-weight:700;cursor:pointer;
-      box-shadow:var(--glow);display:none;
+    /* ANIMATED TRANSITION */
+    .fade-enter{
+      opacity:0;
+      transform:translateY(10px);
+    }
+    .fade-enter.active{
+      opacity:1;
+      transform:translateY(0);
+      transition:all .45s ease;
     }
   </style>
 </head>
@@ -163,7 +166,7 @@
       <div style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;">
         <div>
           <a href="./index.html">Domov</a>
-          <a href="./chapters.html">Beri spletno</a>
+          <a href="./chapters.html">Odlomki</a>
         </div>
         <div class="top-controls">
           <button class="mini-btn" id="ambientToggle">Glasba: Izklop</button>
@@ -172,123 +175,149 @@
     </nav>
 
     <header>
-      <h1>Spletno branje</h1>
-      <p class="sub">Izberi poglavje in vstopi v svet zgodbe.</p>
+      <h1>Odlomki</h1>
+      <p class="sub">Izberi odlomek na levi strani.</p>
     </header>
 
     <section class="layout">
       <aside class="panel">
-        <strong>Poglavja</strong>
-        <div id="chapterList" style="margin-top:.6rem;"></div>
+        <strong>Odlomki</strong>
+        <div id="excerptList" style="margin-top:.6rem;"></div>
       </aside>
 
       <article class="reader">
-        <h2 id="chapterTitle">Izberi poglavje</h2>
-        <div id="chapterBody">
-          <p>Dobrodošel v spletnem bralniku. Klikni poglavje za začetek.</p>
+        <h2 id="excerptTitle">Izberi odlomek</h2>
+        <div id="excerptBody">
+          <p>Dobrodošel v odlomkih. Klikni odlomek za začetek.</p>
         </div>
 
         <hr />
 
         <div class="controls">
-          <button class="btn btn-audio" id="playChapterAudio">▶ Predvajaj glasbo poglavja</button>
-          <a class="btn btn-home" href="./index.html">← Nazaj na glavno stran</a>
+          <button class="btn btn-audio" id="playExcerptAudio">▶ Predvajaj glasbo</button>
+          <button class="btn btn-nav" id="prevExcerpt">← Prejšnji</button>
+          <button class="btn btn-nav" id="nextExcerpt">Naslednji →</button>
         </div>
-
-        <p class="note" id="audioNote">
-          Namig: Naloži glasbo poglavja kot <code>audio/ch1.mp3</code>, <code>audio/ch2.mp3</code>, <code>audio/ch3.mp3</code>.
-        </p>
       </article>
     </section>
   </div>
 
-  <button id="toTop">▲</button>
-
   <script>
-    const chapters = [
-      { id: "ch1", title: "1. poglavje — Šepet pred zoro", audio: "audio/ch1.mp3",
-        body: `<p>Noč ni bila tiha — poslušala je.</p>
-<p>Stal je pod nebom, raztrganim od zvezd, in v miru je začutil bližino Prisotnosti.</p>
-<p>Ne strah. Ne grom. Le tih klic k veri.</p>`
+    const excerpts = [
+      { id: "ex1", title: "Odlomek I — Prva svetloba", audio: "audio/excerpt1.mp3",
+        body: `<p>“V tišini pred zoro je zaslišal šepet, ki ni bil s tega sveta...”</p>`
       },
-      { id: "ch2", title: "2. poglavje — Skozi ozka vrata", audio: "audio/ch2.mp3",
-        body: `<p>Pot je bila ozka kot obljuba in svetla kot usmiljenje.</p>
-<p>Vsak korak je zahteval predanost. Vsak vdih je zahteval zaupanje.</p>
-<p>Hodil je naprej — ne zato, ker bi razumel, ampak ker je veroval.</p>`
+      { id: "ex2", title: "Odlomek II — Skozi tančico", audio: "audio/excerpt2.mp3",
+        body: `<p>“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”</p>`
       },
-      { id: "ch3", title: "3. poglavje — Svetilke v onstranstvu", audio: "audio/ch3.mp3",
-        body: `<p>Onkraj tančice so gorele luči v krajih, kamor sonce ne seže.</p>
-<p>Vsaka svetilka je označevala življenje, ki je izbralo upanje namesto obupa.</p>
-<p>Zajokal je, se nasmehnil in šel naprej.</p>`
+      { id: "ex3", title: "Odlomek III — Svetilke v onstranstvu", audio: "audio/excerpt3.mp3",
+        body: `<p>“Onkraj tančice so gorele luči v krajih, kamor sonce ne seže.”</p>`
+      },
+      { id: "ex4", title: "Odlomek IV — Klic v tišini", audio: "audio/excerpt4.mp3",
+        body: `<p>“Ko je vse utihnilo, je v srcu zazvenel glas, ki ga ni mogel zanikati.”</p>`
+      },
+      { id: "ex5", title: "Odlomek V — Pot luči", audio: "audio/excerpt5.mp3",
+        body: `<p>“Svetloba je rezala temo, in vsak korak je bil kakor obljuba.”</p>`
+      },
+      { id: "ex6", title: "Odlomek VI — Nebo brez konca", audio: "audio/excerpt6.mp3",
+        body: `<p>“Zvezde so se zdele bližje kot kdajkoli, kot da bi mu nebo šepetalo.”</p>`
       }
     ];
 
-    const chapterList = document.getElementById("chapterList");
-    const chapterTitle = document.getElementById("chapterTitle");
-    const chapterBody = document.getElementById("chapterBody");
-    const playBtn = document.getElementById("playChapterAudio");
-    const audioNote = document.getElementById("audioNote");
+    const excerptList = document.getElementById("excerptList");
+    const excerptTitle = document.getElementById("excerptTitle");
+    const excerptBody = document.getElementById("excerptBody");
+    const playBtn = document.getElementById("playExcerptAudio");
+    const prevBtn = document.getElementById("prevExcerpt");
+    const nextBtn = document.getElementById("nextExcerpt");
 
-    let activeChapter = null;
-    let chapterAudio = null;
+    let activeIndex = 0;
+    let excerptAudio = null;
 
-    function renderChapterButtons(){
-      chapterList.innerHTML = chapters.map(c => `
-        <button class="chapter-btn ${activeChapter && activeChapter.id === c.id ? "active" : ""}" data-id="${c.id}">
-          ${c.title}
+    function renderExcerptButtons(){
+      excerptList.innerHTML = excerpts.map((e,i) => `
+        <button class="excerpt-btn ${i===activeIndex ? "active" : ""}" data-index="${i}">
+          ${e.title}
         </button>
       `).join("");
 
-      document.querySelectorAll(".chapter-btn").forEach(btn => {
-        btn.addEventListener("click", () => showChapter(btn.dataset.id, true));
+      document.querySelectorAll(".excerpt-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeIndex = parseInt(btn.dataset.index,10);
+          showExcerpt(true);
+        });
       });
     }
 
-    function showChapter(id, stopMusic = true){
-      const ch = chapters.find(x => x.id === id);
-      if (!ch) return;
-      activeChapter = ch;
+    function animateSwap(){
+      excerptTitle.classList.remove("fade-enter","active");
+      excerptBody.classList.remove("fade-enter","active");
 
-      chapterTitle.textContent = ch.title;
-      chapterBody.innerHTML = ch.body;
-      audioNote.innerHTML = `Glasbena datoteka: <code>${ch.audio}</code>`;
+      void excerptTitle.offsetWidth;
+      void excerptBody.offsetWidth;
 
-      if (stopMusic) stopChapterAudio();
-      playBtn.textContent = chapterAudio ? "⏸ Ustavi glasbo poglavja" : "▶ Predvajaj glasbo poglavja";
+      excerptTitle.classList.add("fade-enter");
+      excerptBody.classList.add("fade-enter");
 
-      renderChapterButtons();
+      requestAnimationFrame(()=>{
+        excerptTitle.classList.add("active");
+        excerptBody.classList.add("active");
+      });
     }
 
-    function stopChapterAudio(){
-      if (chapterAudio){
-        chapterAudio.pause();
-        chapterAudio.currentTime = 0;
-        chapterAudio = null;
+    function showExcerpt(stopMusic = true){
+      const ex = excerpts[activeIndex];
+      excerptTitle.textContent = ex.title;
+      excerptBody.innerHTML = ex.body;
+
+      animateSwap();
+
+      if (stopMusic) stopExcerptAudio();
+      playBtn.textContent = excerptAudio ? "⏸ Ustavi glasbo" : "▶ Predvajaj glasbo";
+
+      renderExcerptButtons();
+    }
+
+    function stopExcerptAudio(){
+      if (excerptAudio){
+        excerptAudio.pause();
+        excerptAudio.currentTime = 0;
+        excerptAudio = null;
       }
     }
 
     playBtn.addEventListener("click", async () => {
-      if (!activeChapter) return;
+      const ex = excerpts[activeIndex];
+      if (!ex) return;
 
-      if (chapterAudio){
-        stopChapterAudio();
-        playBtn.textContent = "▶ Predvajaj glasbo poglavja";
+      if (excerptAudio){
+        stopExcerptAudio();
+        playBtn.textContent = "▶ Predvajaj glasbo";
         return;
       }
 
       try{
-        chapterAudio = new Audio(activeChapter.audio);
-        await chapterAudio.play();
-        playBtn.textContent = "⏸ Ustavi glasbo poglavja";
-        chapterAudio.onended = () => {
-          chapterAudio = null;
-          playBtn.textContent = "▶ Predvajaj glasbo poglavja";
+        excerptAudio = new Audio(ex.audio);
+        await excerptAudio.play();
+        playBtn.textContent = "⏸ Ustavi glasbo";
+        excerptAudio.onended = () => {
+          excerptAudio = null;
+          playBtn.textContent = "▶ Predvajaj glasbo";
         };
-      } catch(e){
-        alert("Glasbe poglavja ni mogoče predvajati. Preveri datoteko: " + activeChapter.audio);
-        chapterAudio = null;
-        playBtn.textContent = "▶ Predvajaj glasbo poglavja";
+      } catch {
+        alert("Glasbe ni mogoče predvajati. Preveri datoteko: " + ex.audio);
+        excerptAudio = null;
+        playBtn.textContent = "▶ Predvajaj glasbo";
       }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      activeIndex = (activeIndex - 1 + excerpts.length) % excerpts.length;
+      showExcerpt(true);
+    });
+    nextBtn.addEventListener("click", () => {
+      activeIndex = (activeIndex + 1) % excerpts.length;
+      showExcerpt(true);
     });
 
     const ambientBtn = document.getElementById("ambientToggle");
@@ -313,14 +342,8 @@
       }
     });
 
-    const toTop = document.getElementById("toTop");
-    window.addEventListener("scroll", () => {
-      toTop.style.display = window.scrollY > 300 ? "block" : "none";
-    });
-    toTop.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
-
-    renderChapterButtons();
-    showChapter("ch1", false);
+    renderExcerptButtons();
+    showExcerpt(false);
   </script>
 </body>
 </html>

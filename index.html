@@ -10,10 +10,10 @@
       --dark:#111111;
       --card:#151515;
       --text:#f7f7f7;
-      --muted:#cfcfcf;
+      --muted:#d8d8d8;
       --gold:#e8d7a7;
       --border:rgba(232,215,167,.35);
-      --glow:0 0 22px rgba(232,215,167,.5);
+      --glow:0 0 22px rgba(232,215,167,.6);
     }
     *{box-sizing:border-box}
     body{
@@ -26,43 +26,37 @@
       overflow-x:hidden;
     }
 
-    /* BRIGHTER + MORE MOTION */
+    /* BRIGHTER + MORE MOVEMENT */
     body::before, body::after{
       content:"";
-      position:fixed; inset:-25%;
+      position:fixed; inset:-30%;
       z-index:-2;
       background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,.20), transparent 35%),
-        radial-gradient(circle at 80% 15%, rgba(232,215,167,.25), transparent 35%),
-        radial-gradient(circle at 20% 80%, rgba(255,255,255,.18), transparent 40%),
-        radial-gradient(circle at 70% 70%, rgba(232,215,167,.22), transparent 45%),
-        linear-gradient(135deg, #0b0b0b, #1d1d1d, #101010);
-      animation: drift 14s ease-in-out infinite;
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.30), transparent 35%),
+        radial-gradient(circle at 80% 15%, rgba(232,215,167,.30), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,.26), transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(232,215,167,.28), transparent 45%),
+        linear-gradient(135deg, #0b0b0b, #222, #111);
+      animation: drift 10s ease-in-out infinite;
     }
     body::after{
       z-index:-3;
-      opacity:.85;
-      animation: drift2 20s ease-in-out infinite;
-      filter: blur(20px);
+      opacity:.9;
+      animation: drift2 14s ease-in-out infinite;
+      filter: blur(26px);
     }
     @keyframes drift{
       0%{transform:translate3d(0,0,0) scale(1)}
-      50%{transform:translate3d(-6%,4%,0) scale(1.15)}
+      50%{transform:translate3d(-8%,5%,0) scale(1.25)}
       100%{transform:translate3d(0,0,0) scale(1)}
     }
     @keyframes drift2{
-      0%{transform:translate3d(0,0,0) scale(1.15)}
-      50%{transform:translate3d(6%,-4%,0) scale(1.2)}
-      100%{transform:translate3d(0,0,0) scale(1.15)}
+      0%{transform:translate3d(0,0,0) scale(1.2)}
+      50%{transform:translate3d(8%,-5%,0) scale(1.3)}
+      100%{transform:translate3d(0,0,0) scale(1.2)}
     }
 
-    /* EXTREME LAYERS */
-    .bg-layer{
-      position:fixed;
-      inset:0;
-      z-index:-4;
-      pointer-events:none;
-    }
+    .bg-layer{position:fixed;inset:0;z-index:-4;pointer-events:none;}
     .stars{
       background-image:
         radial-gradient(3px 3px at 15% 25%, rgba(255,255,255,.95), transparent 60%),
@@ -71,7 +65,7 @@
         radial-gradient(3px 3px at 85% 75%, rgba(255,255,255,.9), transparent 60%),
         radial-gradient(2.5px 2.5px at 10% 60%, rgba(255,255,255,.75), transparent 60%),
         radial-gradient(2.5px 2.5px at 55% 45%, rgba(255,255,255,.75), transparent 60%);
-      animation: starsMove 50s linear infinite;
+      animation: starsMove 40s linear infinite;
       opacity:1;
     }
     .dust{
@@ -81,33 +75,33 @@
         radial-gradient(2.5px 2.5px at 50% 20%, rgba(232,215,167,.95), transparent 60%),
         radial-gradient(3px 3px at 80% 30%, rgba(232,215,167,.85), transparent 60%),
         radial-gradient(4px 4px at 20% 80%, rgba(232,215,167,.95), transparent 60%);
-      animation: dustFloat 28s ease-in-out infinite;
+      animation: dustFloat 22s ease-in-out infinite;
       opacity:1;
     }
     .noise{
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
-      animation: noiseMove 2.5s steps(2) infinite;
-      opacity:.35;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+      animation: noiseMove 2s steps(2) infinite;
+      opacity:.45;
       mix-blend-mode:screen;
     }
     .mist{
       background:
-        radial-gradient(circle at 50% 25%, rgba(255,255,255,.18), transparent 60%),
-        radial-gradient(circle at 20% 60%, rgba(255,255,255,.10), transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(232,215,167,.12), transparent 60%);
+        radial-gradient(circle at 50% 25%, rgba(255,255,255,.25), transparent 60%),
+        radial-gradient(circle at 20% 60%, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(232,215,167,.18), transparent 60%);
       opacity:1;
-      animation: mistFloat 30s ease-in-out infinite;
+      animation: mistFloat 22s ease-in-out infinite;
     }
-    @keyframes starsMove{from{transform:translateY(0)} to{transform:translateY(-320px)}}
-    @keyframes dustFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(-45px, 25px)}}
-    @keyframes noiseMove{0%{transform:translate(0,0)} 100%{transform:translate(-10px,10px)}}
-    @keyframes mistFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(30px, -18px)}}
+    @keyframes starsMove{from{transform:translateY(0)} to{transform:translateY(-360px)}}
+    @keyframes dustFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(-55px, 30px)}}
+    @keyframes noiseMove{0%{transform:translate(0,0)} 100%{transform:translate(-12px,12px)}}
+    @keyframes mistFloat{0%,100%{transform:translate(0,0)} 50%{transform:translate(40px, -20px)}}
 
     .wrap{max-width:1080px;margin:auto;padding:1rem}
     nav{
       display:flex;justify-content:space-between;align-items:center;gap:1rem;
       padding:.8rem 0;position:sticky;top:0;z-index:10;
-      backdrop-filter:blur(8px);background:rgba(8,8,8,0.65);
+      backdrop-filter:blur(10px);background:rgba(10,10,10,0.7);
       border-bottom:1px solid rgba(232,215,167,.12);
       flex-wrap:wrap;
     }
@@ -116,7 +110,7 @@
     nav a:hover{color:var(--text)}
     .top-controls{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
     .mini-btn{
-      border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08);
       color:#fff; border-radius:10px; padding:.45rem .7rem; cursor:pointer;
       font-size:.88rem;
     }
@@ -124,7 +118,7 @@
     .hero{text-align:center;padding:4rem 1rem 3rem}
     .kicker{
       display:inline-block;padding:.35rem .75rem;border-radius:999px;
-      border:1px solid var(--border);color:var(--gold);background:rgba(232,215,167,.08);
+      border:1px solid var(--border);color:var(--gold);background:rgba(232,215,167,.12);
       font-size:.82rem;
     }
     h1{
@@ -135,7 +129,7 @@
     }
     @keyframes glow{
       0%,100%{text-shadow:0 0 12px rgba(232,215,167,.35)}
-      50%{text-shadow:0 0 26px rgba(232,215,167,.8)}
+      50%{text-shadow:0 0 30px rgba(232,215,167,.9)}
     }
 
     .sub{max-width:760px;margin:auto;color:var(--muted)}
@@ -145,10 +139,10 @@
       display:inline-block;cursor:pointer;font-weight:700;
     }
     .btn-primary{background:linear-gradient(90deg,#b89f5b,#e8d7a7,#f6eac2);color:#221c0f}
-    .btn-dark{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16)}
+    .btn-dark{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2)}
 
     .section{
-      margin:1rem 0 1.4rem;background:var(--card);border:1px solid var(--border);
+      margin:1rem 0 1.4rem;background:rgba(20,20,20,.85);border:1px solid var(--border);
       border-radius:16px;padding:1rem;transition:.25s;
     }
     .section:hover{transform:scale(1.01);box-shadow:var(--glow)}
@@ -157,29 +151,18 @@
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem}
 
     .card{
-      border:1px solid rgba(232,215,167,.2);
-      background:rgba(12,12,12,.85);
+      border:1px solid rgba(232,215,167,.25);
+      background:rgba(14,14,14,.9);
       border-radius:14px;padding:1rem;
       transition:.25s;
       font-size:1.05rem;
+      cursor:pointer;
     }
     .card:hover{transform:scale(1.03);box-shadow:var(--glow)}
 
-    .char-btn{
-      width:100%;
-      text-align:left;
-      white-space:normal;
-      overflow:visible;
-      line-height:1.35;
-    }
-    .char-btn strong{font-size:1.25rem;display:block}
-    .char-btn .muted{font-size:1.02rem;display:block}
-
     .audio-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-    .audio-status{font-size:.9rem;color:var(--gold)}
 
     footer{text-align:center;color:var(--muted);font-size:.92rem;padding:1.4rem 0 2rem}
-    code{background:rgba(255,255,255,.08);padding:.12rem .36rem;border-radius:6px}
 
     #toTop{
       position:fixed;right:16px;bottom:16px;z-index:99;
@@ -220,7 +203,7 @@
       </p>
       <div class="cta">
         <a class="btn btn-primary" href="#buy">Kupi tiskano knjigo</a>
-        <a class="btn btn-dark" href="./chapters.html">Beri spletno različico</a>
+        <a class="btn btn-dark" href="https://example.com" target="_blank" rel="noopener">Kupi spletno različico</a>
       </div>
     </header>
 
@@ -233,26 +216,28 @@
 
     <section id="read" class="section">
       <h2>Preberi izbrane dele</h2>
-      <p class="muted">Tukaj lahko objaviš nekaj kratkih odlomkov in povabiš bralce v zgodbo.</p>
+      <p class="muted">Klikni odlomek za ogled vseh odlomkov.</p>
 
       <div class="grid">
-        <article class="card">
+        <article class="card" onclick="location.href='chapters.html'">
           <h3>Odlomek I — Prva svetloba</h3>
           <p>“V tišini pred zoro je zaslišal šepet, ki ni bil s tega sveta...”</p>
           <div class="audio-row">
             <button class="btn btn-dark play-btn" data-audio="audio/excerpt1.mp3">▶ Predvajaj glasbo</button>
-            <span class="audio-status">Ready</span>
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" onclick="location.href='chapters.html'">
           <h3>Odlomek II — Skozi tančico</h3>
           <p>“Tančica med strahom in vero je vztrepetala in prikazala se je ozka pot miru.”</p>
           <div class="audio-row">
             <button class="btn btn-dark play-btn" data-audio="audio/excerpt2.mp3">▶ Predvajaj glasbo</button>
-            <span class="audio-status">Ready</span>
           </div>
         </article>
+      </div>
+
+      <div class="cta" style="justify-content:flex-start;margin-top:1rem;">
+        <a class="btn btn-dark" href="./chapters.html">Pokaži več</a>
       </div>
     </section>
 
@@ -265,7 +250,7 @@
           data-name="Elias"
           data-role="Romar"
           data-detail="Elias se bori z dvomom, a skozi preizkušnje raste v veri in postane priča milosti v obeh svetovih.">
-          <span class="muted">ELias</span>
+          <strong>Elias</strong>
           <span class="muted">Romar</span>
         </button>
 
@@ -296,7 +281,7 @@
       <p class="muted">Ko boš pripravljen, poveži gumbe s pravimi nakupnimi povezavami.</p>
       <div class="cta" style="justify-content:flex-start">
         <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Kupi tiskano knjigo</a>
-        <a class="btn btn-dark" href="./chapters.html">Beri spletno različico</a>
+        <a class="btn btn-dark" href="https://example.com" target="_blank" rel="noopener">Kupi spletno različico</a>
       </div>
     </section>
 
@@ -351,8 +336,8 @@
     let currentAudio = null;
     let currentButton = null;
     document.querySelectorAll(".play-btn").forEach((btn) => {
-      const status = btn.parentElement.querySelector(".audio-status");
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
         const src = btn.dataset.audio;
 
         if (currentAudio) {
@@ -364,7 +349,6 @@
         if (currentButton === btn) {
           currentAudio = null;
           currentButton = null;
-          status.textContent = "Ustavljeno";
           return;
         }
 
@@ -372,10 +356,8 @@
         currentAudio = audio;
         currentButton = btn;
         btn.textContent = "⏸ Ustavi glasbo";
-        status.textContent = "Predvajanje...";
 
         audio.play().catch(() => {
-          status.textContent = "Ni mogoče predvajati (preveri pot datoteke)";
           btn.textContent = "▶ Predvajaj glasbo";
           currentAudio = null;
           currentButton = null;
@@ -383,7 +365,6 @@
 
         audio.onended = () => {
           btn.textContent = "▶ Predvajaj glasbo";
-          status.textContent = "Končano";
           currentAudio = null;
           currentButton = null;
         };
